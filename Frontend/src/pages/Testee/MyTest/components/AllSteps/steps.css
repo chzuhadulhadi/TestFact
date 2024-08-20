@@ -1,0 +1,200 @@
+.categories-content {
+  margin-top: 30px;
+}
+
+.categories-content table {
+  width: 100%;
+}
+@media (min-width: 768) {
+  .categories-content table {
+    width: 30vw;
+  }
+}
+/* @media (min-width: 320px) and (max-width: 768) {
+  .categories-content table {
+    width: none;
+  }
+} */
+
+.question-content {
+  margin-top: 30px;
+}
+
+.question .question-type {
+  width: 10px !important;
+}
+
+/* .form-label {
+  width: 500px !important;
+} */
+
+.question {
+  float: left;
+}
+
+.question-content .formClass {
+  width: 70vw;
+}
+
+.select-category,
+.text-type {
+  width: 120px !important;
+  height: 43px;
+  /* margin-top: 33px; */
+  /* margin-left: 25px; */
+  margin-bottom: 20px;
+}
+
+.add-answer-text {
+  width: 12vw;
+}
+
+/* layout */
+.layout-content {
+  margin-top: 20px;
+}
+
+.result-structure-content {
+  margin-top: 20px;
+}
+
+.automatic-text-content {
+  margin-top: 20px;
+}
+
+.automatic-text-select-cat {
+  height: 42px;
+  width: 150px;
+  margin-bottom: 5px;
+}
+
+.time-limit {
+  width: 65px !important;
+}
+
+.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr {
+  font-weight: 400;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+
+.answers-field {
+  width: 78% !important;
+  float: left;
+}
+
+.answers-field-points {
+  width: 15% !important;
+  margin-left: 80% !important;
+}
+
+/* .all-questions {
+    display: none !important
+} */
+
+.all-questions {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  display: block;
+}
+
+.search-for-question {
+  float: right;
+  width: 100px;
+  height: 28px;
+}
+
+#collapse-button {
+  margin: 0px !important;
+}
+
+.free-text-check {
+  margin-left: 20px;
+}
+
+.free-text-label {
+  width: 100px !important;
+  margin-left: 5px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 50% 22% 14%;
+}
+.QuestionButtonClass {
+  margin: 0px !important;
+}
+
+/* steps.css */
+
+/* Customize the slider container */
+.slick-slider {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* Customize the slider track */
+.slick-track {
+  display: flex;
+}
+
+/* Customize the slider slide */
+.slick-slide {
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+/* Optional: Customize the navigation buttons */
+.slick-prev,
+.slick-next {
+  margin: 50px;
+}
+
+/* Optional: Customize the dots navigation */
+.slick-dots {
+  text-align: center;
+}
+
+.slick-dots li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slick-dots li button {
+  font-size: 16px;
+  color: #333;
+}
+
+.counterq {
+  font-size: 17px;
+  font-weight: bolder;
+}
+
+.true-bg {
+  background: green !important;
+}
+
+.false-bg {
+  background: red;
+}
+.toggle {
+  /* width: max-content; */
+}
+.cate {
+  width: 100%;
+  margin-left: 7px;
+}
+
+@media (min-width: 350px) and (max-width: 800px) {
+  .next-button {
+    font-size: 10px; /* Adjusted size */
+    /* Adjusted position */
+  }
+}

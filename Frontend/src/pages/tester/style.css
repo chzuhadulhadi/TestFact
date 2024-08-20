@@ -1,0 +1,108 @@
+.filltest {
+  width: 100%;
+  margin: auto;
+  margin-top: 1vh;
+}
+
+.filltest h3 {
+  font-weight: 700;
+  font-size: 3rem;
+  padding: 2rem;
+  text-align: left !important;
+}
+
+.filltest .textValidate {
+  margin-top: 10rem !important;
+}
+
+.filltest .question {
+  /* background-color: #f88e04; */
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.filltest .testStartClass {
+  margin: auto;
+  text-align: center;
+}
+
+
+.filltest .testStartClass img {
+  margin: auto;
+  text-align: center;
+  padding-bottom: 3rem;
+  border: 2px solid red;
+
+}
+.Send{
+  justify-content: center;
+  display: grid;
+}
+
+/* .filltest h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #f88e04 !important;
+  text-align: center !important;
+} */
+
+.filltest .fill-question {
+  /* text-align: left !important; */
+  width: 60%;
+  margin: auto;
+}
+
+.filltest .timer {
+  text-align: right !important;
+  margin-right: 20px;
+}
+
+.filltest .test-title {
+  text-align: center !important;
+}
+
+.filltest .radio-answer {
+  display: block;
+  /* padding: 15px; */
+  /* margin-top: 20px; */
+}
+
+.radio-answer-all-single {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding: 10px;
+}
+
+.filltest input {
+  padding: 20px;
+}
+
+.prev-next {
+  text-align: center;
+}
+
+.test-logo {
+  width: 20%;
+  margin: auto;
+}
+
+.end-button {
+  float: right;
+  margin-right: 100px !important;
+}
+
+.count-down {
+  margin-right: 75px !important;
+}
+
+/* .end-test-text {
+  text-align: center;
+} */
+
+.filltest {
+  text-align: center;
+
+}

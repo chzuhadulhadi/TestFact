@@ -1,0 +1,95 @@
+/* General Styles */
+.get-sec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.mid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.leftside,
+.rightside {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.field {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.forgot-password-link {
+  text-decoration: none;
+  float: right;
+  margin-bottom: 15px;
+  margin-right: 110px;
+}
+
+.login-page {
+  text-align: center;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+  /* Mobile Styles */
+  .mid {
+    flex-direction: column;
+  }
+
+  .rightside {
+    margin-top: 20px;
+  }
+
+  .forgot-password-link {
+    margin-right: 0;
+    text-align: right;
+    display: block;
+  }
+}
+
+@media (max-width: 639px) {
+  /* Small Mobile Styles */
+  .field {
+    padding: 8px;
+  }
+  .Mid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button {
+    padding: 8px;
+  }
+
+  .leftside,
+  .rightside {
+    padding: 10px;
+  }
+
+  .login-page h3 {
+    font-size: 1.5rem;
+  }
+}

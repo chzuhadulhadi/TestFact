@@ -1,0 +1,82 @@
+/* CSS for Hamburger Icon */
+.mobile {
+  display: none; /* Hide the hamburger icon by default on larger screens */
+  cursor: pointer;
+  padding: 10px;
+}
+
+.mobile img {
+  width: 30px; /* Adjust the width of the hamburger icon as needed */
+}
+html, body {
+  scroll-behavior: auto; /* or scroll-behavior: initial; */
+}
+
+
+/* Styling for the Mobile Menu */
+.menumobile {
+  display: none; /* Hide the mobile menu by default on larger screens */
+}
+
+.show-menu .menumobile {
+  display: block; /* Show the mobile menu when the .show-menu class is applied */
+}
+
+/* Style the Mobile Menu Items */
+.menumobile .Navigation ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menumobile .Navigation ul li {
+  margin: 10px 0;
+}
+
+.menumobile .Navigation ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Add Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  .mobile {
+    display: block; /* Show the hamburger icon on smaller screens */
+  }
+
+  .header {
+    position: relative; /* Add this for stacking context */
+  }
+
+  .menumobile {
+    position: absolute;
+    top: 60px; /* Adjust the top position as needed */
+    right: 0;
+    background-color: #fff;
+    width: 100%;
+    z-index: 1;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .menumobile .Navigation ul {
+    padding: 20px;
+  }
+
+  .menumobile .Navigation ul li {
+    margin: 10px 0;
+  }
+
+  .menumobile .Navigation ul li a {
+    font-size: 16px;
+    color: #333;
+    background-color: transparent;
+  }
+
+  .mobile img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+}
+

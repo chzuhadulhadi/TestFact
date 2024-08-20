@@ -1,0 +1,66 @@
+.userlist .mainsection .Pricing_sec {
+  /* background: linear-gradient(0deg, rgba(255, 254, 254, 0.8), rgba(255, 255, 255, 0.7)),
+    url(./images/backroudn.jpg) top right no-repeat;  */
+  /* background-size: cover; */
+  /* height: 100vh; */
+  background-color: white;
+}
+
+.userlist .formcontainer {
+  text-align: center;
+  margin: auto;
+  padding: 3rem;
+}
+
+.userlist .formcontainer .userform label {
+  margin-top: 10px;
+}
+
+.userlist .formcontainer .userform .formField {
+  display: block;
+  width: 20%;
+  font-size: 13px;
+  border-radius: 5px;
+  padding: 4px 12px;
+  border: 1px groove #b2b2b2;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.userlist .formcontainer .userform .button {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 4px 10px;
+  border: 1px solid #b2b2b2;
+  background-color: #ff9000;
+  color: white;
+}
+
+.userlist .formcontainer .userform .button:hover {
+  background-color: black;
+}
+
+.userlist .mainsection h2 {
+  color: #ff9000;
+}
+
+th {
+  text-align: left;
+  font-weight: 700;
+  background-color: #ff9000 !important;
+  color: white;
+}
+
+button {
+  background-color: #ff9000 !important;
+  color: white !important;
+  /* margin: 20px !important; */
+  padding: 4px 8px;
+  outline: none;
+  border: none;
+  border-radius: 3px !important;
+}
+
+.table tbody tr td {
+  text-align: left;
+}

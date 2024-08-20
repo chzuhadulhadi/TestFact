@@ -1,0 +1,49 @@
+{
+    "name": "Computer Test",
+    "orientation": 1, 
+    "beforeTestText": "Welcome to my Test",
+    "afterTestText": "Thanks for the Test",
+    "scoringType": 1, 
+    "randomOrder": 1,
+    testCategories: {
+        category1: {
+            question1: {
+            "noOfQuestions": 1,
+            "answer0": "Central processing Unit",
+            "points0": 10
+            "answer1": "Central processing Unit",
+            "points1": 10
+		"category": "Theory"
+			}
+		question2 : {
+		noOfQuestions": 1,
+            "answer0": "Central processing Unit",
+            "points0": 10
+            "answer1": "Central processing Unit",
+            "points1": 10
+		"category": "Theory"
+			}
+            },
+  	category2: {
+            question1: {
+            "noOfQuestions": 1,
+            "answer0": "Central processing Unit",
+            "points0": 10
+            "answer1": "Central processing Unit",
+            "points1": 10
+		"category": "Theory"
+		}
+		question2 : {
+		noOfQuestions": 1,
+            "answer0": "Central processing Unit",
+            "points0": 10
+            "answer1": "Central processing Unit",
+            "points1": 10
+		"category": "Theory"
+		}
+            },           
+        },
+       
+    }
+
+}
