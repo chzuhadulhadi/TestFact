@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 import { serverImageUrl } from "../../../../../apiCalls/apiRoutes";
 import { SketchPicker, SwatchesPicker, ChromePicker } from "react-color";
 import { debounce } from "lodash";
-import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
-import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 
 function TestLayout(props) {
   const [
@@ -395,9 +395,6 @@ function TestLayout(props) {
                   </button>
                 </div>
               </div>
-              <button type="submit" onClick={() => {}}>
-                Next
-              </button>
             </div>
 
             <div className="w-25">
@@ -554,17 +551,17 @@ function TestLayout(props) {
         </form>
       </div>
       <button
-                onClick={() => props.obj.setTabSelected("LAYOUT")}
-                className="fixed LEFT-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
-              >
-                <ArrowBackIosRoundedIcon/>
-              </button>
-                <button
-                onClick={() => props.obj.setTabSelected("RESULT STRUCTURE")}
-                className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
-              >
-                <ArrowForwardIosRoundedIcon/>
-              </button>
+        onClick={() => props.obj.setTabSelected("QUESTIONS")}
+        className="fixed ml-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
+      >
+        <ArrowBackIosRoundedIcon />
+      </button>
+      <button
+        onClick={() => props.obj.setTabSelected("RESULT STRUCTURE")}
+        className="fixed right-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
+      >
+        <ArrowForwardIosRoundedIcon />
+      </button>
     </div>
   );
 }

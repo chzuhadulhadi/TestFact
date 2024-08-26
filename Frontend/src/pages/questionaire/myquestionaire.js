@@ -239,7 +239,7 @@ function MyQuestionaire() {
                 border-style="solid"
                 border-width="1px"
               />
-              
+
               <>
                 <table className="w-full" class="table" id="myTable">
                   <thead>
@@ -252,7 +252,6 @@ function MyQuestionaire() {
                       <th>Change</th>
                       <th>Single Send</th>
                       <th>Preview Test</th>
-
 
                       {/* <th>orientation</th>
                   <th>Introductory Message</th>
@@ -309,7 +308,6 @@ function MyQuestionaire() {
                               >
                                 | Duplicate Test
                               </a>
-                              
                             </td>
                             <td>
                               <a
@@ -328,7 +326,7 @@ function MyQuestionaire() {
                               </a>
                             </td>
                             <td>
-                            <a
+                              <a
                                 style={{
                                   cursor: "pointer",
                                   color: "blue",
@@ -345,7 +343,7 @@ function MyQuestionaire() {
                         );
                       })}
                   </tbody>
-                  <div className="fixed  bottom-0 pb-3 ">
+                  <div className="fixed w-full bg-white bottom-0 pb-3 ">
                     <div className="">
                       <button
                         onClick={(e) => {

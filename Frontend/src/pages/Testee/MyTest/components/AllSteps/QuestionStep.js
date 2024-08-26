@@ -12,8 +12,8 @@ import { Grid, Box } from "@mui/material";
 // import '../../style.css'
 import "./steps.css";
 import Modal from "react-bootstrap/Modal";
-import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
-import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 
 var questionCounter = 0;
 var answerCounter = 0;
@@ -1245,200 +1245,198 @@ function QuestionStep(props) {
 
   return (
     <>
-    <div hidden={props.obj.tabSelected == "QUESTIONS" ? false : true}>
-      <div
-        style={{ textAlign: "start",  }}
-        className="question-content ml-8 w-[80%] mx-auto pb-20"
-        hidden={props.obj.tabSelected == "QUESTIONS" ? false : true}
-      >
-        <div class="wrapper">
-          <div>
-            <h3>#3 - Questions</h3>
-            <p className="counterq">{`Questions Created: ${questionCount}`}</p>
-
+      <div hidden={props.obj.tabSelected == "QUESTIONS" ? false : true}>
+        <div
+          style={{ textAlign: "start" }}
+          className="question-content ml-8 w-[80%] mx-auto pb-20"
+          hidden={props.obj.tabSelected == "QUESTIONS" ? false : true}
+        >
+          <div class="wrapper">
             <div>
-              <label htmlFor="questionDropdown">
-                Select a Question from question bank:
-              </label>
-              <select id="questionDropdown" onChange={handleQuestionBank}>
-                <option value="" disabled selected>
-                  Select a question{" "}
-                </option>
-                {questionbank.map((questions, index) => {
-                  return (
-                    <>
-                      {Object.values(questions).map(
-                        (question, questionIndex) =>
-                          question?.question && (
-                            <React.Fragment key={questionIndex}>
-                              <option
-                                value={`${index}-${questionIndex}`}
-                                style={{ fontWeight: "bold" }}
-                              >
-                                {question?.question}
-                              </option>
-                            </React.Fragment>
-                          )
-                      )}
-                    </>
-                  );
-                })}
-              </select>
-            </div>
-            {showExampleModal && (
-              <Modal
-                show={showExampleModal}
-                onHide={handleCloseExampleModal}
-                animation={false}
-              >
-                <Modal.Header closeButton>
-                  <Modal.Title>Import Questions</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <label htmlFor={`question${questionCounter}`}>
-                    Supported File Structure:
-                  </label>
-                  <img src="/ques.png" alt="question structure" />
-                  <input
-                    type="file"
-                    id={`question${questionCounter}`}
-                    onChange={(e) => {
-                      setSelectedFile(e.target.files[0]);
-                    }}
-                  />
-                  <button
-                    style={{ position: "relative", right: "20px" }}
-                    onClick={handleUpload}
-                    disabled={selectedFile == null}
-                  >
-                    Upload Questions from excel
-                  </button>
-                </Modal.Body>
-              </Modal>
-            )}
-            <button
-              className="text-xs px-6"
-              onClick={() => setShowExampleModal(true)}
-            >
-              Import Questions from excel
-            </button>
-            <br />
-            <br />
-            <br />
-          </div>
-          <div className="mt-36 text-xs px-6">
-            {" "}
-            <button
-              className="QuestionButtonClass"
-              onClick={() => handleCollapseForAll()}
-            >
-              {allQUestionView}
-            </button>
-          </div>
-          <div>
-            {" "}
-            <input
-              type="search"
-              style={{
-                padding: "10px",
-                marginTop: "0px",
-                marginLeft: "120px",
-              }}
-              placeholder="Search"
-              className="search-for-question"
-              onChange={search}
-            />
-          </div>
-        </div>
-        <Grid container spacing={3}>
-          {Object.keys(html).map(function (topkey, i) {
-            return (
-              <>
-                <Grid item xs={12} id={"all-questions-" + i}>
-                  <Grid container key={i} className="all-questions">
-                    <Grid item xs={12}>
-                      <button
-                        id="collapse-button"
-                        onClick={() => handleCollapse("all-questions-" + i)}
-                      >
-                        -
-                      </button>
-                    </Grid>
-                    <Grid xs={12} className="QuesAns squestion-div">
-                      {html[topkey]}
-                    </Grid>
-                    <Grid
-                      xs={12}
-                      className="QuesAns question-div squestion-div"
+              <h3>#3 - Questions</h3>
+              <p className="counterq">{`Questions Created: ${questionCount}`}</p>
+
+              <div>
+                <label htmlFor="questionDropdown">
+                  Select a Question from question bank:
+                </label>
+                <select id="questionDropdown" onChange={handleQuestionBank}>
+                  <option value="" disabled selected>
+                    Select a question{" "}
+                  </option>
+                  {questionbank.map((questions, index) => {
+                    return (
+                      <>
+                        {Object.values(questions).map(
+                          (question, questionIndex) =>
+                            question?.question && (
+                              <React.Fragment key={questionIndex}>
+                                <option
+                                  value={`${index}-${questionIndex}`}
+                                  style={{ fontWeight: "bold" }}
+                                >
+                                  {question?.question}
+                                </option>
+                              </React.Fragment>
+                            )
+                        )}
+                      </>
+                    );
+                  })}
+                </select>
+              </div>
+              {showExampleModal && (
+                <Modal
+                  show={showExampleModal}
+                  onHide={handleCloseExampleModal}
+                  animation={false}
+                >
+                  <Modal.Header closeButton>
+                    <Modal.Title>Import Questions</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <label htmlFor={`question${questionCounter}`}>
+                      Supported File Structure:
+                    </label>
+                    <img src="/ques.png" alt="question structure" />
+                    <input
+                      type="file"
+                      id={`question${questionCounter}`}
+                      onChange={(e) => {
+                        setSelectedFile(e.target.files[0]);
+                      }}
+                    />
+                    <button
+                      style={{ position: "relative", right: "20px" }}
+                      onClick={handleUpload}
+                      disabled={selectedFile == null}
                     >
-                      {Object.keys(htmlAnswer).map(function (key, i) {
-                        {
-                          var temp =
-                            htmlAnswer[
-                              key
-                            ]?.props.children?.props.children[1].props.id.split(
-                              "-"
-                            )[0];
-                          if (topkey == temp) {
-                            return htmlAnswer[key];
-                          } else {
-                            return null;
+                      Upload Questions from excel
+                    </button>
+                  </Modal.Body>
+                </Modal>
+              )}
+              <button
+                className="text-xs px-6"
+                onClick={() => setShowExampleModal(true)}
+              >
+                Import Questions from excel
+              </button>
+              <br />
+              <br />
+              <br />
+            </div>
+            <div className="mt-36 text-xs px-6">
+              {" "}
+              <button
+                className="QuestionButtonClass"
+                onClick={() => handleCollapseForAll()}
+              >
+                {allQUestionView}
+              </button>
+            </div>
+            <div>
+              {" "}
+              <input
+                type="search"
+                style={{
+                  padding: "10px",
+                  marginTop: "0px",
+                  marginLeft: "120px",
+                }}
+                placeholder="Search"
+                className="search-for-question"
+                onChange={search}
+              />
+            </div>
+          </div>
+          <Grid container spacing={3}>
+            {Object.keys(html).map(function (topkey, i) {
+              return (
+                <>
+                  <Grid item xs={12} id={"all-questions-" + i}>
+                    <Grid container key={i} className="all-questions">
+                      <Grid item xs={12}>
+                        <button
+                          id="collapse-button"
+                          onClick={() => handleCollapse("all-questions-" + i)}
+                        >
+                          -
+                        </button>
+                      </Grid>
+                      <Grid xs={12} className="QuesAns squestion-div">
+                        {html[topkey]}
+                      </Grid>
+                      <Grid
+                        xs={12}
+                        className="QuesAns question-div squestion-div"
+                      >
+                        {Object.keys(htmlAnswer).map(function (key, i) {
+                          {
+                            var temp =
+                              htmlAnswer[
+                                key
+                              ]?.props.children?.props.children[1].props.id.split(
+                                "-"
+                              )[0];
+                            if (topkey == temp) {
+                              return htmlAnswer[key];
+                            } else {
+                              return null;
+                            }
                           }
-                        }
-                      })}
+                        })}
+                      </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
-                <Grid item xs={12} id={"delall-questions-" + i}>
-                  <button
-                    className="question-div QuesAns"
-                    onClick={() => deleteQuestion(topkey)}
-                  >
-                    Delete a Question
-                  </button>
-                </Grid>
-              </>
-            );
-          })}
-        </Grid>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <button
-              style={{ position: "relative", right: "20px" }}
-              onClick={addQuestion}
-            >
-              Add a Question
-            </button>
-            <div className="fixed  bottom-0 left-0 shadow-lg p-3 bg-white w-full">
-              <div className="w-[90%]">
-                <button
-                  type="submit"
-                  className="float-end w-max    bg-blue-500 text-white py-2 rounded"
-                  onClick={(e) => {
-                    props.obj.apiCallToCreateTest(e);
-                  }}
-                >
-                  Save Test & Close
-                </button>
-              </div>
-            </div>
-           
+                  <Grid item xs={12} id={"delall-questions-" + i}>
+                    <button
+                      className="question-div QuesAns"
+                      onClick={() => deleteQuestion(topkey)}
+                    >
+                      Delete a Question
+                    </button>
+                  </Grid>
+                </>
+              );
+            })}
           </Grid>
-        </Grid>
-        
-      </div>
-      <button
-                onClick={() => props.obj.setTabSelected("CATEGORIES")}
-                className="fixed LEFT-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <button
+                style={{ position: "relative", right: "20px" }}
+                onClick={addQuestion}
               >
-                <ArrowBackIosRoundedIcon/>
+                Add a Question
               </button>
-                <button
-                onClick={() => props.obj.setTabSelected("LAYOUT")}
-                className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
-              >
-                <ArrowForwardIosRoundedIcon/>
-              </button>
+              <div className="fixed  bottom-0 left-0 shadow-lg p-3 bg-white w-full">
+                <div className="w-[90%]">
+                  <button
+                    type="submit"
+                    className="float-end w-max    bg-blue-500 text-white py-2 rounded"
+                    onClick={(e) => {
+                      props.obj.apiCallToCreateTest(e);
+                    }}
+                  >
+                    Save Test & Close
+                  </button>
+                </div>
+              </div>
+            </Grid>
+          </Grid>
+        </div>
+        <button
+          onClick={() => props.obj.setTabSelected("CATEGORIES")}
+          className="fixed LEFT-0 ml-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
+        >
+          <ArrowBackIosRoundedIcon />
+        </button>
+        <button
+          onClick={() => props.obj.setTabSelected("LAYOUT")}
+          className="fixed right-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
+        >
+          <ArrowForwardIosRoundedIcon />
+        </button>
       </div>
     </>
   );

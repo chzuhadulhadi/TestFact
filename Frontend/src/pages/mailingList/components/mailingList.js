@@ -6,9 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertToHTML } from "draft-convert";
-import draftToHtml from 'draftjs-to-html';
+import draftToHtml from "draftjs-to-html";
 import { apiCall } from "../../../apiCalls/apiCalls";
-import { logoUploader, local, addLandingPage } from "../../../apiCalls/apiRoutes";
+import {
+  logoUploader,
+  local,
+  addLandingPage,
+} from "../../../apiCalls/apiRoutes";
 import "../style.css";
 import { toast } from "react-toastify";
 import ReactPaginate from "react-paginate";
@@ -17,14 +21,14 @@ import htmlToDraft from "html-to-draftjs";
 import { ContentState } from "draft-js";
 import { formToJSON } from "axios";
 function MailingPageUI(params) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [showBox, setShowBox] = useState(false);
   const [selectedDiv, setSelectedDiv] = useState();
   const [itemShowSelect, setItemShowSelect] = useState("");
   const [showChangeColor, setShowChangeColor] = useState(false);
   const [showPicEditor, setShowPicEditor] = useState(false);
   const [showTextEditor, setShowTextEditor] = useState(false);
-  const [imageId, setImageId] = useState('');
+  const [imageId, setImageId] = useState("");
   const [showPicAdder, setShowPicAdder] = useState(false);
   const [elementAttribute, setElementAttributes] = useState({
     paragraphTextContent: "",
@@ -46,13 +50,12 @@ function MailingPageUI(params) {
       let html = draftToHtml(convertToRaw(beforeTextState.getCurrentContent()));
       setBeforeTestTextHtml(html);
     }
-  }, [beforeTextState])
+  }, [beforeTextState]);
 
   useEffect(() => {
-    setBeforeTestTextHtml('')
-    setBeforeTextState(() =>
-      EditorState.createEmpty())
-  }, [showTextEditor])
+    setBeforeTestTextHtml("");
+    setBeforeTextState(() => EditorState.createEmpty());
+  }, [showTextEditor]);
 
   const editTextEditorFunction = (e) => {
     console.log("texteditorfunction");
@@ -60,8 +63,8 @@ function MailingPageUI(params) {
   useEffect(() => {
     //add the html of selected seciton into the editorstate
     const selectedOne = document.getElementById(selectedDiv);
-    if (selectedDiv === 'mmainNav6') {
-      selectedOne = document?.getElementById('mainNav6');
+    if (selectedDiv === "mmainNav6") {
+      selectedOne = document?.getElementById("mainNav6");
     }
     if (selectedOne) {
       const html = selectedOne?.innerHTML;
@@ -74,10 +77,10 @@ function MailingPageUI(params) {
         setBeforeTextState(editorState);
       }
     }
-    setBeforeTestTextHtml('')
+    setBeforeTestTextHtml("");
     // setBeforeTextState(() =>
     //   EditorState.createEmpty())
-  }, [showTextEditor])
+  }, [showTextEditor]);
   const showToastMessage = (text, color, notify) => {
     if (notify == 1) {
       toast.success(text, {
@@ -104,12 +107,12 @@ function MailingPageUI(params) {
     setItemShowSelect("attribute");
     setShowBox(false);
     setShowPicAdder(true);
-    setShowTextEditor(false)
+    setShowTextEditor(false);
   }
 
   const editImageFunctionality = (e) => {
-    setImageId(e.target.id)
-    setShowPicEditor(true)
+    setImageId(e.target.id);
+    setShowPicEditor(true);
   };
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -129,18 +132,16 @@ function MailingPageUI(params) {
         newimg.onclick = editImageFunctionality;
         var appendTo = document.getElementById(selectedDiv);
         console.log(appendTo);
-        var sectionNameElement = appendTo.querySelector('h4.section-name');
+        var sectionNameElement = appendTo.querySelector("h4.section-name");
         if (sectionNameElement) {
           sectionNameElement.parentNode.removeChild(sectionNameElement);
         }
         appendTo.appendChild(newimg);
         setShowPicAdder(false);
         showToastMessage("Logo uploaded Successfully ", "green", 1);
-
       })
       .then((err) => {
         showToastMessage(err?.response?.data?.message, "red", 2);
-
       });
   };
 
@@ -151,24 +152,24 @@ function MailingPageUI(params) {
     apiCall("post", logoUploader, formData)
       .then((res) => {
         let url = local + res.data.data;
-        document.getElementById(imageId).src = url
-        setShowPicEditor(false)
+        document.getElementById(imageId).src = url;
+        setShowPicEditor(false);
       })
       .then((err) => {
         console.log(err);
       });
   };
   useEffect(() => {
-    const form = document.getElementById('submissionForm');
-    form.addEventListener('submit', (e) => {
+    const form = document.getElementById("submissionForm");
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-    })
+    });
     return () => {
-      form.removeEventListener('submit', (e) => {
+      form.removeEventListener("submit", (e) => {
         e.preventDefault();
-      })
-    }
-  },[])
+      });
+    };
+  }, []);
   const getImageFunction = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -177,24 +178,23 @@ function MailingPageUI(params) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", selectedFile);
-    apiCall("post", logoUploader, formData)
-      .then((res) => {
-        let url = local + res.data.data;
-        var newimg = document.createElement("img");
-        newimg.src = url;
-        newimg.id = selectedDiv + "img" + Math.random(1000);
-        newimg.onclick = editImageFunctionality;
-        var appendTo = document.getElementById(selectedDiv);
-        console.log(appendTo);
-        var sectionNameElement = appendTo.querySelector('h4.section-name');
+    apiCall("post", logoUploader, formData).then((res) => {
+      let url = local + res.data.data;
+      var newimg = document.createElement("img");
+      newimg.src = url;
+      newimg.id = selectedDiv + "img" + Math.random(1000);
+      newimg.onclick = editImageFunctionality;
+      var appendTo = document.getElementById(selectedDiv);
+      console.log(appendTo);
+      var sectionNameElement = appendTo.querySelector("h4.section-name");
 
-        if (sectionNameElement) {
-          sectionNameElement.parentNode.removeChild(sectionNameElement);
-        }
-        appendTo.appendChild(newimg);
-        setShowPicAdder(false);
-        showToastMessage("Image uploaded Successfully ", "green", 1);
-      });
+      if (sectionNameElement) {
+        sectionNameElement.parentNode.removeChild(sectionNameElement);
+      }
+      appendTo.appendChild(newimg);
+      setShowPicAdder(false);
+      showToastMessage("Image uploaded Successfully ", "green", 1);
+    });
   };
 
   const hideFunctionality = () => {
@@ -205,8 +205,8 @@ function MailingPageUI(params) {
 
   const changeBackgroundColor = (e) => {
     let selectedOne = document.getElementById(selectedDiv);
-    if (selectedDiv === 'mainNav6') {
-      selectedOne = document.getElementById('mmainNav6');
+    if (selectedDiv === "mainNav6") {
+      selectedOne = document.getElementById("mmainNav6");
     }
     selectedOne.style.background = e.target.value;
 
@@ -222,27 +222,27 @@ function MailingPageUI(params) {
     const selectedOne = document.getElementById(selectedDiv);
     selectedOne.childNodes.forEach((ele) => {
       if (ele.style) {
-        ele.style.color = e.target.value
+        ele.style.color = e.target.value;
       }
-    })
-  }
+    });
+  };
 
   const [namingConvention, setNamingConvention] = useState({
-    mainNav1: 'Section 1',
-    mainNav2: 'Section 2',
+    mainNav1: "Section 1",
+    mainNav2: "Section 2",
     mainNav3: "Section 3",
     mainNav6: "Section 4",
     mainNav4: "Section 5",
-    mainNav5: 'Section 6',
-  })
+    mainNav5: "Section 6",
+  });
 
   const savePageFunctionality = () => {
-    const fullhtml = document.querySelector('.sectionToGet');
+    const fullhtml = document.querySelector(".sectionToGet");
 
     if (fullhtml) {
       const convertedHtml = fullhtml.innerHTML.toString();
 
-      apiCall('post', addLandingPage, { html: convertedHtml }, true)
+      apiCall("post", addLandingPage, { html: convertedHtml }, true)
         .then((res) => {
           if (res.status === 200) {
             showToastMessage("Landing Page added Successfully", "green", 1);
@@ -250,46 +250,71 @@ function MailingPageUI(params) {
           }
         })
         .catch((err) => {
-          showToastMessage(err?.response?.data?.message || "An error occurred", "red", 2);
+          showToastMessage(
+            err?.response?.data?.message || "An error occurred",
+            "red",
+            2
+          );
         });
     } else {
       showToastMessage("Element with class 'sectionToGet' not found", "red", 2);
     }
   };
 
-
   return (
     <div className="fullWidth">
       <div className="dashboard">
         <h2> {namingConvention[selectedDiv]} </h2>
-        <h5 onClick={() => {
-          setShowTextEditor(true);
-          setShowPicAdder(false);
-        }}> Add text </h5>
-        <h5 onClick={() => {
-          adderFunction("img");
-        }}>Add image</h5>
         <h5
           onClick={() => {
-            setShowChangeColor(true)
+            setShowTextEditor(true);
+            setShowPicAdder(false);
           }}
-        >Change Colors</h5>
+        >
+          {" "}
+          Add text{" "}
+        </h5>
+        <h5
+          onClick={() => {
+            adderFunction("img");
+          }}
+        >
+          Add image
+        </h5>
+        <h5
+          onClick={() => {
+            setShowChangeColor(true);
+          }}
+        >
+          Change Colors
+        </h5>
 
         <h5 onClick={hideFunctionality}>Close sidear</h5>
       </div>
       <div className="pageSection" style={{ width: "100%" }}>
         <div className="sectionToGet">
-          <div className="textEditorClass"
+          <div
+            className="textEditorClass"
             style={showTextEditor ? { display: "block" } : { display: "none" }}
           >
-            <div onClick={() => { setShowTextEditor(false) }} className="closebutton">X</div>
+            <div
+              onClick={() => {
+                setShowTextEditor(false);
+              }}
+              className="closebutton"
+            >
+              X
+            </div>
             <Editor
               editorState={beforeTextState}
               onEditorStateChange={setBeforeTextState}
               id="afterTestText"
               wrapperClassName="wrapper-class"
               // editorClassName="editor-class"
-              editorStyle={{ backgroundColor: document.getElementById(selectedDiv)?.style?.background }}
+              editorStyle={{
+                backgroundColor:
+                  document.getElementById(selectedDiv)?.style?.background,
+              }}
               toolbarClassName="toolbar-class"
             />
             <button
@@ -302,7 +327,7 @@ function MailingPageUI(params) {
                 newDiv.id = "texteditor" + Math.random(10);
                 // selectedOne.appendChild(newDiv);
                 selectedOne.innerHTML = beforeTestTextHtml;
-                setShowTextEditor(false)
+                setShowTextEditor(false);
               }}
             >
               Save
@@ -310,38 +335,101 @@ function MailingPageUI(params) {
           </div>
           <div
             className="textEditorClass"
-            style={showPicAdder ? { display: "block" } : { display: "none" }}>
-            <div onClick={() => { setShowPicAdder(false) }} className="closebutton">X</div>
-            <form onSubmit={imageUploadeFrFunction} style={{ textAlign: "center" }}>
+            style={showPicAdder ? { display: "block" } : { display: "none" }}
+          >
+            <div
+              onClick={() => {
+                setShowPicAdder(false);
+              }}
+              className="closebutton"
+            >
+              X
+            </div>
+            <form
+              onSubmit={imageUploadeFrFunction}
+              style={{ textAlign: "center" }}
+            >
               <h2>Please choose a file</h2>
-              <input className="form-control-file m-5 " type="file" onChange={getImageFunction} required /><br />
+              <input
+                className="form-control-file m-5 "
+                type="file"
+                onChange={getImageFunction}
+                required
+              />
+              <br />
               <button type="submit"> Upload Image </button>
             </form>
           </div>
 
           <div
             className="textEditorClass"
-            style={showPicEditor ? { display: "block" } : { display: "none" }}>
-            <div onClick={() => { setShowPicEditor(false) }} className="closebutton">X</div>
-            <form onSubmit={imageEditorFunction} style={{ textAlign: "center" }}>
+            style={showPicEditor ? { display: "block" } : { display: "none" }}
+          >
+            <div
+              onClick={() => {
+                setShowPicEditor(false);
+              }}
+              className="closebutton"
+            >
+              X
+            </div>
+            <form
+              onSubmit={imageEditorFunction}
+              style={{ textAlign: "center" }}
+            >
               <h2>Please choose a file</h2>
-              <input className="form-control-file m-5 " type="file" onChange={getImageFunction} required /><br />
+              <input
+                className="form-control-file m-5 "
+                type="file"
+                onChange={getImageFunction}
+                required
+              />
+              <br />
               <button type="submit"> Upload Image </button>
             </form>
           </div>
 
           <div
             className="textEditorClass"
-            style={showChangeColor ? { display: "block" } : { display: "none" }}>
-            <div onClick={() => { setShowChangeColor(false) }} className="closebutton">X</div>
-            <div className="m-5" style={{ textAlign: 'center' }}>
+            style={showChangeColor ? { display: "block" } : { display: "none" }}
+          >
+            <div
+              onClick={() => {
+                setShowChangeColor(false);
+              }}
+              className="closebutton"
+            >
+              X
+            </div>
+            <div className="m-5" style={{ textAlign: "center" }}>
               <h2>Please Select Color</h2>
-              <label className="mt-4">Background Color</label><br />
-              <input className="form-control-file m-2" type="color" onChange={changeBackgroundColor} required /><br />
+              <label className="mt-4">Background Color</label>
+              <br />
+              <input
+                className="form-control-file m-2"
+                type="color"
+                onChange={changeBackgroundColor}
+                required
+              />
+              <br />
 
-              <label className="mt-4">Font Color</label><br />
-              <input className="form-control-file m-2" type="color" onChange={changeFontColor} required /><br />
-              <button onClick={() => { setShowChangeColor(false) }}> Save </button>
+              <label className="mt-4">Font Color</label>
+              <br />
+              <input
+                className="form-control-file m-2"
+                type="color"
+                onChange={changeFontColor}
+                required
+              />
+              <br />
+              <button
+                onClick={() => {
+                  setShowChangeColor(false);
+                }}
+              >
+                {" "}
+                Save{" "}
+              </button>
             </div>
           </div>
           <section
@@ -361,7 +449,6 @@ function MailingPageUI(params) {
                   SECTION 1
                 </h1> */}
                 <h4 class="section-name">Section 1</h4>
-
               </div>
             </div>
             {/* </div> */}
@@ -374,8 +461,7 @@ function MailingPageUI(params) {
                 backgroundColor: "yellow",
                 position: "fixed",
               }}
-            >
-            </div>
+            ></div>
           )}
           <section id="overview" className="parallax-section mt-5 container">
             {/* <div className="container"> */}
@@ -383,7 +469,11 @@ function MailingPageUI(params) {
               <div
                 className="col-md-5 col-sm-12 text-md-end"
                 id="mainNav2"
-                style={{ paddingRight: '10px', borderRadius: '10px', margin: '10px' }}
+                style={{
+                  paddingRight: "10px",
+                  borderRadius: "10px",
+                  margin: "10px",
+                }}
                 onClick={() => {
                   addNewElement("mainNav2");
                 }}
@@ -393,7 +483,11 @@ function MailingPageUI(params) {
               <div
                 className="wow fadeInUp col-md-5 col-sm-12 text-md-start"
                 data-wow-delay="1s"
-                style={{ paddingLeft: '10px', borderRadius: '10px', margin: '10px' }}
+                style={{
+                  paddingLeft: "10px",
+                  borderRadius: "10px",
+                  margin: "10px",
+                }}
                 id="mainNav3"
                 onClick={() => {
                   addNewElement("mainNav3");
@@ -407,13 +501,20 @@ function MailingPageUI(params) {
             {/* </div> */}
           </section>
 
-          <section id="blog" className="parallax-section mt-5" style={{ padding: 0 }}>
-            <div className="container" id="mmainNav6" >
+          <section
+            id="blog"
+            className="parallax-section mt-5"
+            style={{ padding: 0 }}
+          >
+            <div className="container" id="mmainNav6">
               <div className="row">
-                <div className="col-md-12 col-sm-12 text-center container m-auto" id="mainNav6"
+                <div
+                  className="col-md-12 col-sm-12 text-center container m-auto"
+                  id="mainNav6"
                   onClick={() => {
                     addNewElement("mainNav6");
-                  }}>
+                  }}
+                >
                   <h4>
                     Enter the details here and we will contact you with the
                     results.
@@ -423,9 +524,12 @@ function MailingPageUI(params) {
                   className="wow fadeInUp col-md-12 col-sm-12 w-50 m-auto"
                   data-wow-delay="0.9s"
                 >
-                  <form id="submissionForm" >
+                  <form id="submissionForm">
                     <div className="mb-3">
-                      <label htmlFor="exampleInputEmail1" className="form-label">
+                      <label
+                        htmlFor="exampleInputEmail1"
+                        className="form-label"
+                      >
                         First Name
                       </label>
                       <input
@@ -438,7 +542,10 @@ function MailingPageUI(params) {
                       />
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="exampleInputEmail1" className="form-label">
+                      <label
+                        htmlFor="exampleInputEmail1"
+                        className="form-label"
+                      >
                         Last Name
                       </label>
                       <input
@@ -451,7 +558,10 @@ function MailingPageUI(params) {
                       />
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="exampleInputEmail1" className="form-label">
+                      <label
+                        htmlFor="exampleInputEmail1"
+                        className="form-label"
+                      >
                         Email address
                       </label>
                       <input
@@ -486,11 +596,19 @@ function MailingPageUI(params) {
                         id="termAndCondition"
                         placeholder="First Name..."
                       />
-                      <label className="form-check-label" htmlFor="exampleCheck1">
-                        I agree to be sent promotional material from time to time. This registration can be removed at any time.
+                      <label
+                        className="form-check-label"
+                        htmlFor="exampleCheck1"
+                      >
+                        I agree to be sent promotional material from time to
+                        time. This registration can be removed at any time.
                       </label>
                     </div>
-                    <button id='formsubmitbutton' type="submit" className="btn btn-primary">  
+                    <button
+                      id="formsubmitbutton"
+                      type="submit"
+                      className="btn btn-primary"
+                    >
                       Submit
                     </button>
                   </form>
@@ -506,7 +624,11 @@ function MailingPageUI(params) {
                 className="wow fadeInUp col-md-5 col-sm-12 text-md-end"
                 data-wow-delay="0.9s"
                 id="mainNav4"
-                style={{ paddingRight: '10px', borderRadius: '10px', margin: '10px' }}
+                style={{
+                  paddingRight: "10px",
+                  borderRadius: "10px",
+                  margin: "10px",
+                }}
                 onClick={() => {
                   addNewElement("mainNav4");
                 }}
@@ -518,7 +640,11 @@ function MailingPageUI(params) {
               <div
                 className="wow fadeInUp col-md-5 col-sm-12 text-md-start"
                 data-wow-delay="1.6s"
-                style={{ paddingLeft: '10px', borderRadius: '10px', margin: '10px' }}
+                style={{
+                  paddingLeft: "10px",
+                  borderRadius: "10px",
+                  margin: "10px",
+                }}
                 id="mainNav5"
                 onClick={() => {
                   addNewElement("mainNav5");
@@ -532,10 +658,17 @@ function MailingPageUI(params) {
             {/* </div> */}
           </section>
         </div>
-        <button className="btn btn-primary" onClick={() => { savePageFunctionality() }}>Save Landing page</button>
+        <div className="flex justify-center mb-10">
+          {" "}
+          <button
+            onClick={() => {
+              savePageFunctionality();
+            }}
+          >
+            Save Landing page
+          </button>
+        </div>
       </div>
-
-
     </div>
   );
 }

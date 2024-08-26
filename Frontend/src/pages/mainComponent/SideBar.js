@@ -67,10 +67,12 @@ function SideBar(props) {
                     paddingBottom: "0",
                   }}
                 >
-                   <a className="no-underline" href="/#home">
-          <span className="text-white text-3xl font-bold">TEST</span>
-          <span className="text-[#ff9000] text-3xl font-bold">FACTORY</span>
-        </a>
+                  <a className="no-underline" href="/#home">
+                    <span className="text-white text-3xl font-bold">TEST</span>
+                    <span className="text-[#ff9000] text-3xl font-bold">
+                      FACTORY
+                    </span>
+                  </a>
                 </h1>
               </Grid>
             </Grid>
@@ -87,7 +89,7 @@ function SideBar(props) {
               navigate("/dashboard/mytest");
             }}
           >
-            <a className="" id="1">
+            <a className="no-underline" id="1">
               My Tests{" "}
             </a>
           </li>

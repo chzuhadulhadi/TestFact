@@ -272,13 +272,15 @@ function Home({ loginCheck }) {
                       style={{ marginLeft: "5px" }}
                     >
                       <Grid item xs={12}>
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          type="submit"
-                        >
-                          Submit
-                        </Button>
+                        <div className="ml-6 mt-2">
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                          >
+                            Submit
+                          </Button>
+                        </div>
                       </Grid>
                     </Grid>
                   </Grid>

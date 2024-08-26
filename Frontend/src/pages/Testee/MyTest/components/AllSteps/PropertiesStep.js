@@ -5,8 +5,8 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import htmlToDraft from "html-to-draftjs";
 import draftToHtml from "draftjs-to-html";
-import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
-import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 
 function PropertiesStep(props) {
   const [timeLimited, setTimeLimited] = useState(false);
@@ -276,8 +276,6 @@ function PropertiesStep(props) {
               >
                 Save Test & Close
               </button>
-
-            
             </div>
           </div>
           {/* <button
@@ -292,18 +290,18 @@ function PropertiesStep(props) {
         <br />
         <br />
       </div>
-        <button
-                onClick={() => props.obj.setTabSelected("CATEGORIES")}
-                className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
-              >
-                <ArrowForwardIosRoundedIcon/>
-              </button>
-              <button
-                onClick={() => props.obj.setTabSelected("CATEGORIES")}
-                className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex hidden "
-              >
-                <ArrowBackIosRoundedIcon/>
-              </button>
+      <button
+        onClick={() => props.obj.setTabSelected("CATEGORIES")}
+        className="fixed right-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
+      >
+        <ArrowForwardIosRoundedIcon />
+      </button>
+      {/* <button
+        onClick={() => props.obj.setTabSelected("CATEGORIES")}
+        className="fixed right-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex hidden "
+      >
+        <ArrowBackIosRoundedIcon />
+      </button> */}
     </div>
   );
 }

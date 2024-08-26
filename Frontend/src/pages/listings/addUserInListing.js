@@ -244,7 +244,7 @@ function AddUserInList() {
             className="form-control"
             required
           />
-          <button type="submit" className="btn btn-primary center">
+          <button type="submit" className="btn btn-primary center my-3">
             Submit
           </button>
         </form>

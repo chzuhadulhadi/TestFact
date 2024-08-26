@@ -1,4 +1,3 @@
-
 import { React, useState, useEffect } from "react";
 import { EditorState } from "draft-js";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +5,13 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertToHTML } from "draft-convert";
 import { apiCall } from "../../apiCalls/apiCalls";
-import { logoUploader, local, addLandingPage, getLandingPage, updateLandingPage } from "../../apiCalls/apiRoutes";
+import {
+  logoUploader,
+  local,
+  addLandingPage,
+  getLandingPage,
+  updateLandingPage,
+} from "../../apiCalls/apiRoutes";
 import "./style.css";
 import { toast } from "react-toastify";
 import htmlToDraft from "html-to-draftjs";
@@ -17,11 +22,11 @@ import { convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { formToJSON } from "axios";
 function EditLandingPage(params) {
-  const [id, setId] = useState(0)
+  const [id, setId] = useState(0);
   var queryParameters = new URLSearchParams(window.location.search);
   var emailToDeal = queryParameters.get("id");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [showBox, setShowBox] = useState(false);
   const [selectedDiv, setSelectedDiv] = useState();
   const [itemShowSelect, setItemShowSelect] = useState("");
@@ -29,7 +34,7 @@ function EditLandingPage(params) {
   const [showPicEditor, setShowPicEditor] = useState(false);
   const [showTextEditor, setShowTextEditor] = useState(false);
   const [attachedTest, setAttachedTest] = useState([]);
-  const [imageId, setImageId] = useState('');
+  const [imageId, setImageId] = useState("");
   const [showPicAdder, setShowPicAdder] = useState(false);
   const [elementAttribute, setElementAttributes] = useState({
     paragraphTextContent: "",
@@ -47,7 +52,7 @@ function EditLandingPage(params) {
       let html = draftToHtml(convertToRaw(beforeTextState.getCurrentContent()));
       setBeforeTestTextHtml(html);
     }
-  }, [beforeTextState])
+  }, [beforeTextState]);
 
   // useEffect(() => {
   //   setBeforeTestTextHtml('')
@@ -56,50 +61,49 @@ function EditLandingPage(params) {
   // }, [showTextEditor])
 
   useEffect(() => {
-    apiCall('post', getLandingPage, { limit: 2, page: 1, id: emailToDeal })
+    apiCall("post", getLandingPage, { limit: 2, page: 1, id: emailToDeal })
       .then((res) => {
-        document.getElementById('appendData').innerHTML = res?.data?.data?.rows[0]?.html
+        document.getElementById("appendData").innerHTML =
+          res?.data?.data?.rows[0]?.html;
 
         // console.log('res?.data?.data?.rows[0]?.html', res?.data?.data?.rows[0]?.html)
         setTimeout(() => {
-          const nav1 = document.querySelector('#mainNav1')
-          nav1.addEventListener('click', (e) => {
-            addNewElement('mainNav1')
-          })
-          const nav2 = document.querySelector('#mainNav2')
-          nav2.addEventListener('click', (e) => {
-            addNewElement('mainNav2')
-          }
-          )
-          const nav3 = document.querySelector('#mainNav3')
-          nav3.addEventListener('click', (e) => {
-            addNewElement('mainNav3')
-          }
-          )
-          const nav4 = document.querySelector('#mainNav4')
-          nav4.addEventListener('click', (e) => {
-            addNewElement('mainNav4')
-          }
-          )
-          const nav5 = document.querySelector('#mainNav5')
-          nav5.addEventListener('click', (e) => {
-            addNewElement('mainNav5')
-          }
-          )
-          const nav6 = document.querySelector('#mainNav6')
-          nav6.addEventListener('click', (e) => {
-            addNewElement('mainNav6')
-          }
-          )
-          document.getElementById('submissionForm').addEventListener('submit', (e) => {
-            e.preventDefault()
-          })
+          const nav1 = document.querySelector("#mainNav1");
+          nav1.addEventListener("click", (e) => {
+            addNewElement("mainNav1");
+          });
+          const nav2 = document.querySelector("#mainNav2");
+          nav2.addEventListener("click", (e) => {
+            addNewElement("mainNav2");
+          });
+          const nav3 = document.querySelector("#mainNav3");
+          nav3.addEventListener("click", (e) => {
+            addNewElement("mainNav3");
+          });
+          const nav4 = document.querySelector("#mainNav4");
+          nav4.addEventListener("click", (e) => {
+            addNewElement("mainNav4");
+          });
+          const nav5 = document.querySelector("#mainNav5");
+          nav5.addEventListener("click", (e) => {
+            addNewElement("mainNav5");
+          });
+          const nav6 = document.querySelector("#mainNav6");
+          nav6.addEventListener("click", (e) => {
+            addNewElement("mainNav6");
+          });
+          document
+            .getElementById("submissionForm")
+            .addEventListener("submit", (e) => {
+              e.preventDefault();
+            });
         }, 300);
         setAttachedTest(res?.data?.data?.rows[0]?.testId);
-      }).catch((err) => {
-        console.log(err)
       })
-  }, [])
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const editTextEditorFunction = (e) => {
     console.log("texteditorfunction");
@@ -130,8 +134,8 @@ function EditLandingPage(params) {
   useEffect(() => {
     //add the html of selected seciton into the editorstate
     const selectedOne = document.getElementById(selectedDiv);
-    if (selectedDiv === 'mmainNav6') {
-      selectedOne = document?.getElementById('mainNav6');
+    if (selectedDiv === "mmainNav6") {
+      selectedOne = document?.getElementById("mainNav6");
     }
     if (selectedOne) {
       const html = selectedOne?.innerHTML;
@@ -144,22 +148,22 @@ function EditLandingPage(params) {
         setBeforeTextState(editorState);
       }
     }
-    setBeforeTestTextHtml('')
+    setBeforeTestTextHtml("");
     // setBeforeTextState(() =>
     //   EditorState.createEmpty())
-  }, [showTextEditor])
+  }, [showTextEditor]);
 
   function adderFunction(params) {
     console.log("adderfunction");
     setItemShowSelect("attribute");
     setShowBox(false);
     setShowPicAdder(true);
-    setShowTextEditor(false)
+    setShowTextEditor(false);
   }
 
   const editImageFunctionality = (e) => {
-    setImageId(e.target.id)
-    setShowPicEditor(true)
+    setImageId(e.target.id);
+    setShowPicEditor(true);
   };
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -179,11 +183,9 @@ function EditLandingPage(params) {
         appendTo.appendChild(newimg);
         setShowPicAdder(false);
         showToastMessage("Logo uploaded Successfully ", "green", 1);
-
       })
       .then((err) => {
         showToastMessage(err?.response?.data?.message, "red", 2);
-
       });
   };
 
@@ -194,8 +196,8 @@ function EditLandingPage(params) {
     apiCall("post", logoUploader, formData)
       .then((res) => {
         let url = local + res.data.data;
-        document.getElementById(imageId).src = url
-        setShowPicEditor(false)
+        document.getElementById(imageId).src = url;
+        setShowPicEditor(false);
       })
       .then((err) => {
         console.log(err);
@@ -214,13 +216,13 @@ function EditLandingPage(params) {
 
   const changeBackgroundColor = (e) => {
     let selectedOne = document.getElementById(selectedDiv);
-    if (selectedDiv === 'mainNav6') {
-      selectedOne = document.getElementById('mmainNav6');
+    if (selectedDiv === "mainNav6") {
+      selectedOne = document.getElementById("mmainNav6");
     }
     selectedOne.style.background = e.target.value;
 
     var allnodes = selectedOne.childNodes;
-    allnodes.forEach((ele) => { 
+    allnodes.forEach((ele) => {
       if (ele.style) {
         ele.style.color = "white";
       }
@@ -229,23 +231,23 @@ function EditLandingPage(params) {
   const changeFontColor = (e) => {
     const selectedOne = document.getElementById(selectedDiv);
     selectedOne.childNodes.forEach((ele) => {
-      ele.style.color = e.target.value
-    })
-  }
+      ele.style.color = e.target.value;
+    });
+  };
 
   const [namingConvention, setNamingConvention] = useState({
-    mainNav1: 'Section 1',
-    mainNav2: 'Section 2',
+    mainNav1: "Section 1",
+    mainNav2: "Section 2",
     mainNav3: "Section 3",
     mainNav6: "Section 4",
     mainNav4: "Section 5",
-    mainNav5: 'Section 6',
-  })
+    mainNav5: "Section 6",
+  });
 
   const savePageFunctionality = () => {
-    const fullhtml = document.querySelector('.sectionToGet').innerHTML
-    console.log(fullhtml)
-    apiCall('post', updateLandingPage, {
+    const fullhtml = document.querySelector(".sectionToGet").innerHTML;
+    console.log(fullhtml);
+    apiCall("post", updateLandingPage, {
       html: fullhtml,
       id: emailToDeal,
       testId: attachedTest,
@@ -253,39 +255,58 @@ function EditLandingPage(params) {
       .then((res) => {
         if (res.status == 200) {
           showToastMessage("Landing Page added Successfully ", "green", 1);
-          navigate('/dashboard/landing-pages')
+          navigate("/dashboard/landing-pages");
         }
-      }).catch((err) => {
-        showToastMessage(err?.response?.data?.message, "red", 2);
-
       })
-  }
+      .catch((err) => {
+        showToastMessage(err?.response?.data?.message, "red", 2);
+      });
+  };
 
   return (
     <div className="fullWidth">
       <div className="dashboard">
         <h2> {namingConvention[selectedDiv]} </h2>
-        <h5 onClick={() => {
-          setShowTextEditor(true);
-          setShowPicAdder(false);
-        }}> Add text </h5>
-        <h5 onClick={() => {
-          adderFunction("img");
-        }}>Add image</h5>
         <h5
           onClick={() => {
-            setShowChangeColor(true)
+            setShowTextEditor(true);
+            setShowPicAdder(false);
           }}
-        >Change Colors</h5>
+        >
+          {" "}
+          Add text{" "}
+        </h5>
+        <h5
+          onClick={() => {
+            adderFunction("img");
+          }}
+        >
+          Add image
+        </h5>
+        <h5
+          onClick={() => {
+            setShowChangeColor(true);
+          }}
+        >
+          Change Colors
+        </h5>
 
         <h5 onClick={hideFunctionality}>Close sidear</h5>
       </div>
       <div className="pageSection">
         <div className="sectionToGet">
-          <div className="textEditorClass"
+          <div
+            className="textEditorClass"
             style={showTextEditor ? { display: "block" } : { display: "none" }}
           >
-            <div onClick={() => { setShowTextEditor(false) }} className="closebutton">X</div>
+            <div
+              onClick={() => {
+                setShowTextEditor(false);
+              }}
+              className="closebutton"
+            >
+              X
+            </div>
             <Editor
               editorState={beforeTextState}
               onEditorStateChange={setBeforeTextState}
@@ -304,7 +325,7 @@ function EditLandingPage(params) {
                 newDiv.id = "texteditor" + Math.random(10);
                 // selectedOne.appendChild(newDiv);
                 selectedOne.innerHTML = beforeTestTextHtml;
-                setShowTextEditor(false)
+                setShowTextEditor(false);
               }}
             >
               Save
@@ -312,38 +333,101 @@ function EditLandingPage(params) {
           </div>
           <div
             className="textEditorClass"
-            style={showPicAdder ? { display: "block" } : { display: "none" }}>
-            <div onClick={() => { setShowPicAdder(false) }} className="closebutton">X</div>
-            <form onSubmit={imageUploaderFunction} style={{ textAlign: "center" }}>
+            style={showPicAdder ? { display: "block" } : { display: "none" }}
+          >
+            <div
+              onClick={() => {
+                setShowPicAdder(false);
+              }}
+              className="closebutton"
+            >
+              X
+            </div>
+            <form
+              onSubmit={imageUploaderFunction}
+              style={{ textAlign: "center" }}
+            >
               <h2>Please choose a file</h2>
-              <input className="form-control-file m-5 " type="file" onChange={getImageFunction} required /><br />
+              <input
+                className="form-control-file m-5 "
+                type="file"
+                onChange={getImageFunction}
+                required
+              />
+              <br />
               <button type="submit"> Upload Image </button>
             </form>
           </div>
 
           <div
             className="textEditorClass"
-            style={showPicEditor ? { display: "block" } : { display: "none" }}>
-            <div onClick={() => { setShowPicEditor(false) }} className="closebutton">X</div>
-            <form onSubmit={imageEditorFunction} style={{ textAlign: "center" }}>
+            style={showPicEditor ? { display: "block" } : { display: "none" }}
+          >
+            <div
+              onClick={() => {
+                setShowPicEditor(false);
+              }}
+              className="closebutton"
+            >
+              X
+            </div>
+            <form
+              onSubmit={imageEditorFunction}
+              style={{ textAlign: "center" }}
+            >
               <h2>Please choose a file</h2>
-              <input className="form-control-file m-5 " type="file" onChange={getImageFunction} required /><br />
+              <input
+                className="form-control-file m-5 "
+                type="file"
+                onChange={getImageFunction}
+                required
+              />
+              <br />
               <button type="submit"> Upload Image </button>
             </form>
           </div>
 
           <div
             className="textEditorClass"
-            style={showChangeColor ? { display: "block" } : { display: "none" }}>
-            <div onClick={() => { setShowChangeColor(false) }} className="closebutton">X</div>
-            <div className="m-5" style={{ textAlign: 'center' }}>
+            style={showChangeColor ? { display: "block" } : { display: "none" }}
+          >
+            <div
+              onClick={() => {
+                setShowChangeColor(false);
+              }}
+              className="closebutton"
+            >
+              X
+            </div>
+            <div className="m-5" style={{ textAlign: "center" }}>
               <h2>Please Select Color</h2>
-              <label className="mt-4">Background Color</label><br />
-              <input className="form-control-file m-2" type="color" onChange={changeBackgroundColor} required /><br />
+              <label className="mt-4">Background Color</label>
+              <br />
+              <input
+                className="form-control-file m-2"
+                type="color"
+                onChange={changeBackgroundColor}
+                required
+              />
+              <br />
 
-              <label className="mt-4">Font Color</label><br />
-              <input className="form-control-file m-2" type="color" onChange={changeFontColor} required /><br />
-              <button onClick={() => { setShowChangeColor(false) }}> Save </button>
+              <label className="mt-4">Font Color</label>
+              <br />
+              <input
+                className="form-control-file m-2"
+                type="color"
+                onChange={changeFontColor}
+                required
+              />
+              <br />
+              <button
+                onClick={() => {
+                  setShowChangeColor(false);
+                }}
+              >
+                {" "}
+                Save{" "}
+              </button>
             </div>
           </div>
           {showBox && (
@@ -354,15 +438,21 @@ function EditLandingPage(params) {
                 backgroundColor: "yellow",
                 position: "fixed",
               }}
-            >
-            </div>
+            ></div>
           )}
-          <section id="appendData" ></section>
+          <section id="appendData"></section>
         </div>
-        <button className="btn btn-primary " onClick={() => { savePageFunctionality() }}>Save Landing page</button>
+        <button
+          className=" flex justify-center"
+          onClick={() => {
+            savePageFunctionality();
+          }}
+        >
+          Save Landing page
+        </button>
       </div>
     </div>
-  )
+  );
 }
 
 export default EditLandingPage;
