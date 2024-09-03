@@ -179,7 +179,7 @@ function TestLayout(props) {
       className="layout-content"
       hidden={props.obj.tabSelected == "LAYOUT" ? false : true}
     >
-      <div className="leftHalf w-[80%] mx-auto mb-20">
+      <div className="leftHalf w-[87%] mx-auto mb-20">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -231,7 +231,7 @@ function TestLayout(props) {
                 <div style={{ position: "absolute", marginTop: "-60px" }}>
                   <svg style={{ position: "absolute" }} width="800" height="20">
                     <line
-                      x1="500"
+                      x1="400"
                       y1="10"
                       x2="600"
                       y2="10"
@@ -419,8 +419,11 @@ function TestLayout(props) {
               <div
                 ref={BackgroundColor}
                 className="color-picker"
-                style={{ position: "relative", right: "20px" }}
+                style={{ position: "relative", left: "100px" }}
               >
+                <br />
+                <br />
+
                 <button
                   onClick={() =>
                     setShowColorPickerForBackgroundColor(
@@ -445,8 +448,12 @@ function TestLayout(props) {
               <div
                 ref={TextColor}
                 className="color-picker"
-                style={{ position: "relative", right: "20px" }}
+                style={{ position: "relative", left: "100px" }}
               >
+                <br />
+                <br />
+                <br />
+
                 <button
                   onClick={() =>
                     setShowColorPickerForTextColor(!showColorPickerForTextColor)
@@ -469,8 +476,10 @@ function TestLayout(props) {
               <div
                 ref={QuestionBackgroundColor}
                 className="color-picker"
-                style={{ position: "relative", right: "20px" }}
+                style={{ position: "relative", left: "100px" }}
               >
+                <br />
+                <br />
                 <button
                   onClick={() =>
                     setShowColorPickerForQuestionBackgroundColor(
@@ -499,8 +508,10 @@ function TestLayout(props) {
               <div
                 ref={QuestionTextColor}
                 className="color-picker"
-                style={{ position: "relative", right: "20px" }}
+                style={{ position: "relative", left: "100px" }}
               >
+                <br />
+                <br />
                 <button
                   onClick={() =>
                     setShowColorPickerForQuestionTextColor(
@@ -524,8 +535,10 @@ function TestLayout(props) {
               <div
                 ref={AnswerColor}
                 className="color-picker"
-                style={{ position: "relative", right: "20px" }}
+                style={{ position: "relative", left: "100px" }}
               >
+                <br />
+                <br />
                 <button
                   onClick={() =>
                     setShowColorPickerForAnswerColor(
