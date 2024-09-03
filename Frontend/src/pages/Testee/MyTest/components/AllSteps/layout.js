@@ -219,7 +219,7 @@ function TestLayout(props) {
 
                     <img
                       style={{ height: "150px", width: "250px" }}
-                      src={`${serverImageUrl}${textLayout.imageUrl}`}
+                      src={`${serverImageUrl}/api${textLayout.imageUrl}`}
                       alt="Selected Logo"
                     />
                   </>
