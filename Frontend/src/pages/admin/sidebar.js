@@ -1,7 +1,7 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
-import '../dashboard/sidebar.css'
+import "../dashboard/sidebar.css";
 // function AdminSideBar(props) {
 //     const navigate = useNavigate()
 
@@ -52,10 +52,6 @@ import '../dashboard/sidebar.css'
 
 // export default AdminSideBar;
 
-
-
-
-
 function AdminSideBar(props) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -101,30 +97,24 @@ function AdminSideBar(props) {
                     style={{
                       textAlign: "center",
                       background: "none",
-                      marginLeft: "20px",
                     }}
                   >
                     <i
-                      className="fa fa-home pt-3"
+                      className="fa fa-home "
                       style={{ fontSize: "25px", color: "white" }}
                     ></i>
                   </div>
                 </a>
               </Grid>
               <Grid item xs={10}>
-                <h1
-                  style={{
-                    textAlign: "center",
-                    margin: "6px 0px 0px 0px",
-                    paddingTop: "0",
-                    paddingBottom: "0",
-                  }}
-                >
-                   <a className="no-underline" href="/#home">
-          <span className="text-white text-3xl font-bold">TEST</span>
-          <span className="text-[#ff9000] text-3xl font-bold">FACTORY</span>
-        </a>
-                </h1>
+                <h2 style={{}}>
+                  <a className="no-underline" href="/#home">
+                    <span className="text-white text-2xl font-bold">TEST</span>
+                    <span className="text-[#ff9000] text-2xl font-bold">
+                      FACTORY
+                    </span>
+                  </a>
+                </h2>
               </Grid>
             </Grid>
           </div>
@@ -133,27 +123,50 @@ function AdminSideBar(props) {
           className="list-unstyled components"
           style={{ overflow: "auto", width: "100%" }}
         >
-          <li id="2" onClick={() => { navigate("/admin/dashboard/users") }}>
-                    <a id="1">Users </a>
-                </li>
-                <li id="3" onClick={() => { navigate("/admin/dashboard/tests") }}>
-                    <a id="2">Tests</a>
-                </li>
-                <li id="3" onClick={() => { navigate("/admin/dashboard/results") }}>
-                    <a id="2">Results</a>
-                </li>
-                <li id="3" onClick={() => { navigate("/admin/dashboard/packages") }}>
-                    <a id="2">Packages</a>
-                </li>
+          <li
+            id="2"
+            onClick={() => {
+              navigate("/admin/dashboard/users");
+            }}
+          >
+            <a id="1">Users </a>
+          </li>
+          <li
+            id="3"
+            onClick={() => {
+              navigate("/admin/dashboard/tests");
+            }}
+          >
+            <a id="2">Tests</a>
+          </li>
+          <li
+            id="3"
+            onClick={() => {
+              navigate("/admin/dashboard/results");
+            }}
+          >
+            <a id="2">Results</a>
+          </li>
+          <li
+            id="3"
+            onClick={() => {
+              navigate("/admin/dashboard/packages");
+            }}
+          >
+            <a id="2">Packages</a>
+          </li>
         </ul>
         <ul className="list-unstyled components">
-               <li id="7" onClick={() => {
-                    localStorage.removeItem('token')
-                    navigate('/login')
-                }}>
-                     <a id="6">Logout </a>
-                 </li>
-             </ul>
+          <li
+            id="7"
+            onClick={() => {
+              localStorage.removeItem("token");
+              navigate("/login");
+            }}
+          >
+            <a id="6">Logout </a>
+          </li>
+        </ul>
       </nav>
     </>
   );

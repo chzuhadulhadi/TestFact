@@ -132,95 +132,101 @@ function QuestionaireHistory() {
           <option value="3">Analytics</option>
         </select>
       </div>
-      <table className="table" id="myTable">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Date</th>
-            <th scope="col">Test Link</th>
-            <th scope="col">Time Taken</th>
-            <th scope="col">Status</th>
-            <th scope="col">Score</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentRecords?.map((ele, index) => {
-            var tempElement = document.createElement("div");
-            tempElement.innerHTML = ele.landingPageData?.html;
-            console.log(ele.landingPageData);
-            var firstText = tempElement
-              .querySelector("#mainNav1")
-              ?.textContent?.trim();
-            console.log("firstText", firstText);
-            return (
-              <tr key={index}>
-                <td style={{ fontSize: "14px" }}>{ele?.number || index + 1}</td>
-                <td style={{ fontSize: "14px" }}>
-                  {ele.name}
-                  {firstText ? (
-                    <>
-                      <br />
-                      (Landing Page:{firstText})
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </td>
-                <td style={{ fontSize: "14px" }}>{ele.userEmail}</td>
-                <td style={{ fontSize: "14px" }}>
-                  {new Date(ele.createdAt)
-                    .toLocaleDateString()
-                    .padStart(10, "0")}
-                </td>
-                <td style={{ fontSize: "14px" }}>
-                  <a
-                    target="blank"
-                    style={{ textDecoration: "underline" }}
-                    href={frontEndPath + "filltest/" + ele.id}
-                  >
-                    Test Link
-                  </a>
-                </td>
-                <td style={{ fontSize: "14px" }}>
-                  {(
-                    Math.abs(new Date(ele.testEnd) - new Date(ele.testStart)) /
-                    1000 /
-                    60
-                  ).toFixed(2)}{" "}
-                  Min
-                </td>
-                {/* {console.log("getResultScore(ele.id) ", getResultScore(ele.id))}
+      <div className="overflow-x-auto w-full">
+        <table className="table" id="myTable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Date</th>
+              <th scope="col">Test Link</th>
+              <th scope="col">Time Taken</th>
+              <th scope="col">Status</th>
+              <th scope="col">Score</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentRecords?.map((ele, index) => {
+              var tempElement = document.createElement("div");
+              tempElement.innerHTML = ele.landingPageData?.html;
+              console.log(ele.landingPageData);
+              var firstText = tempElement
+                .querySelector("#mainNav1")
+                ?.textContent?.trim();
+              console.log("firstText", firstText);
+              return (
+                <tr key={index}>
+                  <td style={{ fontSize: "14px" }}>
+                    {ele?.number || index + 1}
+                  </td>
+                  <td style={{ fontSize: "14px" }}>
+                    {ele.name}
+                    {firstText ? (
+                      <>
+                        <br />
+                        (Landing Page:{firstText})
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </td>
+                  <td style={{ fontSize: "14px" }}>{ele.userEmail}</td>
+                  <td style={{ fontSize: "14px" }}>
+                    {new Date(ele.createdAt)
+                      .toLocaleDateString()
+                      .padStart(10, "0")}
+                  </td>
+                  <td style={{ fontSize: "14px" }}>
+                    <a
+                      target="blank"
+                      style={{ textDecoration: "underline" }}
+                      href={frontEndPath + "filltest/" + ele.id}
+                    >
+                      Test Link
+                    </a>
+                  </td>
+                  <td style={{ fontSize: "14px" }}>
+                    {(
+                      Math.abs(
+                        new Date(ele.testEnd) - new Date(ele.testStart)
+                      ) /
+                      1000 /
+                      60
+                    ).toFixed(2)}{" "}
+                    Min
+                  </td>
+                  {/* {console.log("getResultScore(ele.id) ", getResultScore(ele.id))}
                   {console.log("getTestStatus(ele)(ele.id) ", getTestStatus(ele))} */}
 
-                <td style={{ fontSize: "14px" }}>{getTestStatus(ele)}</td>
-                <td style={{ fontSize: "14px" }}>
-                  {!isNaN(resultsWithIds[ele.id])
-                    ? resultsWithIds[ele.id]
-                    : "0.0"}{" "}
-                  %
-                </td>
+                  <td style={{ fontSize: "14px" }}>{getTestStatus(ele)}</td>
+                  <td style={{ fontSize: "14px" }}>
+                    {!isNaN(resultsWithIds[ele.id])
+                      ? resultsWithIds[ele.id]
+                      : "0.0"}{" "}
+                    %
+                  </td>
 
-                {/* <td style={{fontSize:'14px'}}>{ele.orientation}</td> */}
-                {/* <td style={{fontSize:'14px'}}>{ele.timeLimit}</td> */}
-                {/* <td style={{fontSize:'14px'}}>View | Edit | Delete</td>
-                 */}
-                <td style={{ fontSize: "14px" }}>
-                  <a
-                    target="blank"
-                    style={{ textDecoration: "underline" }}
-                    href={"/resultpage/" + ele.id}
-                  >
-                    See Results
-                  </a>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                  {/* <td style={{fontSize:'14px'}}>{ele.orientation}</td> */}
+                  {/* <td style={{fontSize:'14px'}}>{ele.timeLimit}</td> */}
+                  {/* <td style={{fontSize:'14px'}}>View | Edit | Delete</td>
+                   */}
+                  <td style={{ fontSize: "14px" }}>
+                    <a
+                      target="blank"
+                      style={{ textDecoration: "underline" }}
+                      href={"/resultpage/" + ele.id}
+                    >
+                      See Results
+                    </a>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
       {totalDataLenght > postsPerPage && (
         <ReactPaginate
           onPageChange={paginate}

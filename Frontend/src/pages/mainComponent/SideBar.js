@@ -48,7 +48,6 @@ function SideBar(props) {
                     style={{
                       textAlign: "center",
                       background: "none",
-                      marginLeft: "20px",
                     }}
                   >
                     <i
@@ -59,21 +58,20 @@ function SideBar(props) {
                 </a>
               </Grid>
               <Grid item xs={10}>
-                <h1
+                <h2
                   style={{
-                    textAlign: "center",
                     margin: "6px 0px 0px 0px",
                     paddingTop: "0",
                     paddingBottom: "0",
                   }}
                 >
                   <a className="no-underline" href="/#home">
-                    <span className="text-white text-3xl font-bold">TEST</span>
-                    <span className="text-[#ff9000] text-3xl font-bold">
+                    <span className="text-white text-2xl font-bold">TEST</span>
+                    <span className="text-[#ff9000] text-2xl font-bold">
                       FACTORY
                     </span>
                   </a>
-                </h1>
+                </h2>
               </Grid>
             </Grid>
           </div>

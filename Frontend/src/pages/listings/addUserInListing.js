@@ -684,7 +684,7 @@ function AddUserInList() {
           {selectedTab == "editUserInMailingList" && editUserMailingList()}
         </Modal>
 
-        <>
+        <div className="overflow-x-auto w-full">
           <table className="table place-contant-evenly">
             <thead>
               <tr>
@@ -773,7 +773,7 @@ function AddUserInList() {
               />
             </div>
           )}
-        </>
+        </div>
       </div>
     </div>
   );

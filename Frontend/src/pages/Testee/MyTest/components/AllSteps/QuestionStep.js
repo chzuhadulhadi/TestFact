@@ -1251,105 +1251,104 @@ function QuestionStep(props) {
           className="question-content ml-8 w-[80%] mx-auto pb-20"
           hidden={props.obj.tabSelected == "QUESTIONS" ? false : true}
         >
-          <div class="wrapper">
-            <div>
-              <h3>#3 - Questions</h3>
-              <p className="counterq">{`Questions Created: ${questionCount}`}</p>
+          <div>
+            <h3>#3 - Questions</h3>
+            <p className="counterq">{`Questions Created: ${questionCount}`}</p>
 
-              <div>
-                <label htmlFor="questionDropdown">
-                  Select a Question from question bank:
-                </label>
-                <select id="questionDropdown" onChange={handleQuestionBank}>
-                  <option value="" disabled selected>
-                    Select a question{" "}
-                  </option>
-                  {questionbank.map((questions, index) => {
-                    return (
-                      <>
-                        {Object.values(questions).map(
-                          (question, questionIndex) =>
-                            question?.question && (
-                              <React.Fragment key={questionIndex}>
-                                <option
-                                  value={`${index}-${questionIndex}`}
-                                  style={{ fontWeight: "bold" }}
-                                >
-                                  {question?.question}
-                                </option>
-                              </React.Fragment>
-                            )
-                        )}
-                      </>
-                    );
-                  })}
-                </select>
-              </div>
-              {showExampleModal && (
-                <Modal
-                  show={showExampleModal}
-                  onHide={handleCloseExampleModal}
-                  animation={false}
-                >
-                  <Modal.Header closeButton>
-                    <Modal.Title>Import Questions</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <label htmlFor={`question${questionCounter}`}>
-                      Supported File Structure:
-                    </label>
-                    <img src="/ques.png" alt="question structure" />
-                    <input
-                      type="file"
-                      id={`question${questionCounter}`}
-                      onChange={(e) => {
-                        setSelectedFile(e.target.files[0]);
-                      }}
-                    />
-                    <button
-                      style={{ position: "relative", right: "20px" }}
-                      onClick={handleUpload}
-                      disabled={selectedFile == null}
-                    >
-                      Upload Questions from excel
-                    </button>
-                  </Modal.Body>
-                </Modal>
-              )}
-              <button
-                className="text-xs px-6"
-                onClick={() => setShowExampleModal(true)}
-              >
-                Import Questions from excel
-              </button>
-              <br />
-              <br />
-              <br />
-            </div>
-            <div className="mt-36 text-xs px-6">
-              {" "}
-              <button
-                className="QuestionButtonClass"
-                onClick={() => handleCollapseForAll()}
-              >
-                {allQUestionView}
-              </button>
-            </div>
             <div>
-              {" "}
-              <input
-                type="search"
-                style={{
-                  padding: "10px",
-                  marginTop: "0px",
-                  marginLeft: "120px",
-                }}
-                placeholder="Search"
-                className="search-for-question"
-                onChange={search}
-              />
+              <label htmlFor="questionDropdown">
+                Select a Question from question bank:
+              </label>
+              <select id="questionDropdown" onChange={handleQuestionBank}>
+                <option value="" disabled selected>
+                  Select a question{" "}
+                </option>
+                {questionbank.map((questions, index) => {
+                  return (
+                    <>
+                      {Object.values(questions).map(
+                        (question, questionIndex) =>
+                          question?.question && (
+                            <React.Fragment key={questionIndex}>
+                              <option
+                                value={`${index}-${questionIndex}`}
+                                style={{ fontWeight: "bold" }}
+                              >
+                                {question?.question}
+                              </option>
+                            </React.Fragment>
+                          )
+                      )}
+                    </>
+                  );
+                })}
+              </select>
             </div>
+            {showExampleModal && (
+              <Modal
+                show={showExampleModal}
+                onHide={handleCloseExampleModal}
+                animation={false}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Import Questions</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <label htmlFor={`question${questionCounter}`}>
+                    Supported File Structure:
+                  </label>
+                  <img src="/ques.png" alt="question structure" />
+                  <input
+                    type="file"
+                    id={`question${questionCounter}`}
+                    onChange={(e) => {
+                      setSelectedFile(e.target.files[0]);
+                    }}
+                  />
+                  <button
+                    style={{ position: "relative", right: "20px" }}
+                    onClick={handleUpload}
+                    disabled={selectedFile == null}
+                  >
+                    Upload Questions from excel
+                  </button>
+                </Modal.Body>
+              </Modal>
+            )}
+            <button
+              className="text-xs px-6"
+              onClick={() => setShowExampleModal(true)}
+            >
+              Import Questions from excel
+            </button>
+            <br />
+            <br />
+            <br />
           </div>
+          <div className="mt-36 text-xs px-6">
+            {" "}
+            <button
+              className="QuestionButtonClass"
+              onClick={() => handleCollapseForAll()}
+            >
+              {allQUestionView}
+            </button>
+          </div>
+          <div>
+            {" "}
+            <input
+              type="search"
+              style={{
+                padding: "10px",
+                marginTop: "0px",
+                marginLeft: "120px",
+              }}
+              placeholder="Search"
+              className="search-for-question"
+              onChange={search}
+            />
+          </div>
+
           <Grid container spacing={3}>
             {Object.keys(html).map(function (topkey, i) {
               return (

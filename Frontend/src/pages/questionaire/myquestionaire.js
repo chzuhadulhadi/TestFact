@@ -240,7 +240,7 @@ function MyQuestionaire() {
                 border-width="1px"
               />
 
-              <>
+              <div className="overflow-x-auto my-4 w-full">
                 <table className="w-full" class="table" id="myTable">
                   <thead>
                     <tr>
@@ -357,7 +357,7 @@ function MyQuestionaire() {
                     </div>
                   </div>
                 </table>
-              </>
+              </div>
             </div>
           </div>
         ) : (

@@ -147,77 +147,79 @@ function LandingPageData() {
         {" "}
         Export Data
       </button>
-      <table className="table mt-4" id="myTable">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">PhoneNo</th>
-            <th scope="col">Email OK</th>
-            <th scope="col">Test</th>
-            <th scope="col">Test Date</th>
-            <th scope="col">Status</th>
-            <th scope="col">Score</th>
-            <th scope="col">Result Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentRecords
-            ?.filter((value) => value.landingPageData?.email)
-            .map((ele, index) => {
-              console.log("ele.landingPageData", ele.landingPageData);
-              return (
-                <tr key={index}>
-                  <td style={{ fontSize: "14px" }}>{index + 1}</td>
-                  <td style={{ fontSize: "14px" }}>
-                    {ele.landingPageData.firstName}
-                  </td>
-                  <td style={{ fontSize: "14px" }}>
-                    {ele.landingPageData.lastName}
-                  </td>
-                  <td style={{ fontSize: "14px" }}>{ele.userEmail}</td>
-                  <td style={{ fontSize: "14px" }}>
-                    {ele.landingPageData.phoneNumber}
-                  </td>
-                  <td style={{ fontSize: "14px" }}>
-                    {ele.landingPageData.termAndCondition == true
-                      ? "Agree"
-                      : "Disagree"}
-                  </td>
-                  <td style={{ fontSize: "14px" }}>
-                    <a
-                      target="blank"
-                      style={{ textDecoration: "underline" }}
-                      href={frontEndPath + "filltest/" + ele.id}
-                    >
-                      Test Link
-                    </a>
-                  </td>
-                  <td style={{ fontSize: "14px" }}>
-                    {new Date(ele.createdAt)
-                      .toLocaleDateString()
-                      .padStart(10, "0")}
-                  </td>
-                  <td style={{ fontSize: "14px" }}>{getTestStatus(ele)}</td>
-                  <td style={{ fontSize: "14px" }}>
-                    {resultsWithIds[ele.id]} %
-                  </td>
-                  <td style={{ fontSize: "14px" }}>
-                    <a
-                      target="blank"
-                      style={{ textDecoration: "underline" }}
-                      href={"/resultpage/" + ele.id}
-                    >
-                      See Result
-                    </a>
-                  </td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto w-full">
+        <table className="table mt-4" id="myTable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">PhoneNo</th>
+              <th scope="col">Email OK</th>
+              <th scope="col">Test</th>
+              <th scope="col">Test Date</th>
+              <th scope="col">Status</th>
+              <th scope="col">Score</th>
+              <th scope="col">Result Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentRecords
+              ?.filter((value) => value.landingPageData?.email)
+              .map((ele, index) => {
+                console.log("ele.landingPageData", ele.landingPageData);
+                return (
+                  <tr key={index}>
+                    <td style={{ fontSize: "14px" }}>{index + 1}</td>
+                    <td style={{ fontSize: "14px" }}>
+                      {ele.landingPageData.firstName}
+                    </td>
+                    <td style={{ fontSize: "14px" }}>
+                      {ele.landingPageData.lastName}
+                    </td>
+                    <td style={{ fontSize: "14px" }}>{ele.userEmail}</td>
+                    <td style={{ fontSize: "14px" }}>
+                      {ele.landingPageData.phoneNumber}
+                    </td>
+                    <td style={{ fontSize: "14px" }}>
+                      {ele.landingPageData.termAndCondition == true
+                        ? "Agree"
+                        : "Disagree"}
+                    </td>
+                    <td style={{ fontSize: "14px" }}>
+                      <a
+                        target="blank"
+                        style={{ textDecoration: "underline" }}
+                        href={frontEndPath + "filltest/" + ele.id}
+                      >
+                        Test Link
+                      </a>
+                    </td>
+                    <td style={{ fontSize: "14px" }}>
+                      {new Date(ele.createdAt)
+                        .toLocaleDateString()
+                        .padStart(10, "0")}
+                    </td>
+                    <td style={{ fontSize: "14px" }}>{getTestStatus(ele)}</td>
+                    <td style={{ fontSize: "14px" }}>
+                      {resultsWithIds[ele.id]} %
+                    </td>
+                    <td style={{ fontSize: "14px" }}>
+                      <a
+                        target="blank"
+                        style={{ textDecoration: "underline" }}
+                        href={"/resultpage/" + ele.id}
+                      >
+                        See Result
+                      </a>
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
       {totalDataLenght > postsPerPage && (
         <ReactPaginate
           onPageChange={paginate}
