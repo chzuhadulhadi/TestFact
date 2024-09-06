@@ -1,10 +1,26 @@
-.MultiStepHeader {
-  display: flex;
-  flex-direction: row;
-  align-content: space-evenly;
-  margin: auto;
-  flex-wrap: wrap;
-  align-content: space-between;
+@media (min-width: 768px) {
+  .MultiStepHeader {
+    display: flex;
+    flex-direction: row;
+    align-content: space-evenly;
+    margin: auto;
+    flex-wrap: wrap;
+    align-content: space-between;
+    width: 100%;
+    margin-left: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .MultiStepHeader {
+    display: flex;
+    flex-direction: row;
+    align-content: space-evenly;
+    margin: auto;
+    flex-wrap: wrap;
+    align-content: space-between;
+    width: 100%;
+    margin-left: 50px;
+  }
 }
 
 .MultiStepHeader h4 {
@@ -13,6 +29,7 @@
   margin-left: 1px;
   padding: 5px 10px;
   cursor: pointer;
+  margin: 5px;
   border-radius: 0px 700px 700px 0px;
 }
 
@@ -47,7 +64,7 @@
 
 .heading4 {
   font-weight: 500;
-  font-size: 1.1vw;
+  font-size: 14px;
   margin: 0px 2px;
   opacity: 0.7;
 }
