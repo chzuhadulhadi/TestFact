@@ -40,7 +40,7 @@ function SideBar(props) {
             overflow: "hidden",
           }}
         >
-          <div className="site-logo">
+          <div className="site-logo  mt-1">
             <Grid container>
               <Grid item xs={2}>
                 <a href="/" style={{ fontSize: "25px" }}>
@@ -66,10 +66,14 @@ function SideBar(props) {
                   }}
                 >
                   <a className="no-underline" href="/#home">
-                    <span className="text-white text-2xl font-bold">TEST</span>
-                    <span className="text-[#ff9000] text-2xl font-bold">
-                      FACTORY
-                    </span>
+                    <div className=" pt-1">
+                      <span className="text-white text-2xl font-bold">
+                        TEST
+                      </span>
+                      <span className="text-[#ff9000] text-2xl font-bold">
+                        FACTORY
+                      </span>
+                    </div>
                   </a>
                 </h2>
               </Grid>

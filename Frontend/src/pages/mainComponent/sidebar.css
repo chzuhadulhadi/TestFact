@@ -38,7 +38,7 @@ a:focus {
 }
 
 #sidebar {
-  min-width: 25vw;
+  min-width: 20vw;
   background: #3e3f3f;
   color: #fff;
   transition: all 0.3s;
@@ -162,7 +162,7 @@ a.article:hover {
 ----------------------------------------------------- */
 
 #content {
-  width: 75vw;
+  width: 100vw;
   padding: 20px;
   min-height: 100vh;
   transition: all 0.3s;

@@ -101,12 +101,12 @@ function PropertiesStep(props) {
   return (
     <div
       hidden={props.obj.tabSelected == "PROPERTIES" ? false : true}
-      className="categories-content w-[90%] mx-auto"
+      className="categories-content w-[70%] mx-auto md:w-[90%] "
     >
       <div className="leftHalf  ">
         <br />
         <form
-          className="formClass w-[80%] mx-auto mb-10"
+          className="formClass w-[90%] mx-auto mb-10"
           onSubmit={(e) => {
             e.preventDefault();
             props.obj.showTab("CATEGORIES");

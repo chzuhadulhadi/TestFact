@@ -705,6 +705,7 @@ function AddUserInList() {
                         style={{
                           backgroundColor: "#FF9000",
                           color: "white",
+                          margin: "1px",
                         }}
                         onClick={() => {
                           clickDetector(
@@ -722,6 +723,7 @@ function AddUserInList() {
                         style={{
                           backgroundColor: "#FF9000",
                           color: "white",
+                          margin: "1px",
                         }}
                         onClick={() => {
                           clickDetector(
@@ -739,6 +741,7 @@ function AddUserInList() {
                         style={{
                           backgroundColor: "#FF9000",
                           color: "white",
+                          margin: "1px",
                         }}
                         onClick={() => {
                           clickDetector(

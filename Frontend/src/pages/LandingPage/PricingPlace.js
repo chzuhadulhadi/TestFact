@@ -61,52 +61,56 @@ export default function PricingPlace() {
   console.log(packages);
   return (
     <>
-      <div className="Pricing_sec ml-8" id="pricing">
-        <div className="Center">
-          <h2>Pricing</h2>
-          <p>
-            Service Packages for every need. <br />
-          </p>
-          <div className="Line"></div>
-          <Grid container spacing={2}>
-            {packages.map((item, index) => (
-              <Grid item xs={12} sm={6} md={4} mt={5}>
-                <div className="Basic">
-                  <h5>{item.packageName}</h5>
-                </div>
-                <br />
-                <div className="Dollar">
-                  {countryCode === "il" ? (
-                    <h4>${item.packagePrice} + VAT</h4>
-                  ) : (
-                    <h4>${item.packagePrice}</h4>
-                  )}
-                </div>
-                <br />
+      <div className="w-[90%] mx-auto ">
+        <div className="Pricing_sec mt-4" id="pricing">
+          <div className="Center">
+            <h2 className="text-xl">Pricing</h2>
+            <p>
+              Service Packages for every need. <br />
+            </p>
+            <div className="Line"></div>
+            <Grid container spacing={2}>
+              {packages.map((item, index) => (
+                <Grid item xs={12} sm={6} md={4} mt={5}>
+                  <div className="Basic">
+                    <h5>{item.packageName}</h5>
+                  </div>
+                  <br />
+                  <div className="Dollar">
+                    {countryCode === "il" ? (
+                      <h4>${item.packagePrice} + VAT</h4>
+                    ) : (
+                      <h4>${item.packagePrice}</h4>
+                    )}
+                  </div>
+                  <br />
 
-                <div className="Band">
-                  <h5>
-                    Duration: <span>{item.packageDuration} days</span>
-                  </h5>
-                </div>
-                <br />
+                  <div className="Band">
+                    <h5>
+                      Duration: <span>{item.packageDuration} days</span>
+                    </h5>
+                  </div>
+                  <br />
 
-                <div className="Band">
-                  <h5>
-                    Number Of tests: <span>{item.numberOfTests}</span>
-                  </h5>
-                </div>
-                <br />
-                <div className="Band">
-                  <h5>{item.support}</h5>
-                </div>
-                <br />
-                <div className="Band last">
-                  <button onClick={() => handleBuyNow(item.id)}>Buy Now</button>
-                </div>
-              </Grid>
-            ))}
-          </Grid>
+                  <div className="Band">
+                    <h5>
+                      Number Of tests: <span>{item.numberOfTests}</span>
+                    </h5>
+                  </div>
+                  <br />
+                  <div className="Band">
+                    <h5>{item.support}</h5>
+                  </div>
+                  <br />
+                  <div className="Band last">
+                    <button onClick={() => handleBuyNow(item.id)}>
+                      Buy Now
+                    </button>
+                  </div>
+                </Grid>
+              ))}
+            </Grid>
+          </div>
         </div>
       </div>
     </>

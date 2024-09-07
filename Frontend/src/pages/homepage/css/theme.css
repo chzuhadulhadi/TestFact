@@ -985,7 +985,7 @@ header.smaller .Navigation li {
 
 /* <<< Pricing Section >>> */
 .Pricing_sec {
-  padding: 112px 32px 108px 0px;
+  padding: 112px 0px 108px 0px;
   width: 100%;
   overflow: hidden;
   background: #ececec;

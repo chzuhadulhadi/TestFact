@@ -109,10 +109,14 @@ function AdminSideBar(props) {
               <Grid item xs={10}>
                 <h2 style={{}}>
                   <a className="no-underline" href="/#home">
-                    <span className="text-white text-2xl font-bold">TEST</span>
-                    <span className="text-[#ff9000] text-2xl font-bold">
-                      FACTORY
-                    </span>
+                    <div className="text-center pt-2">
+                      <span className="text-white text-2xl font-bold">
+                        TEST
+                      </span>
+                      <span className="text-[#ff9000] text-2xl font-bold">
+                        FACTORY
+                      </span>
+                    </div>
                   </a>
                 </h2>
               </Grid>

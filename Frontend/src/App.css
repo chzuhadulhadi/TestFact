@@ -70,8 +70,13 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 919px) {
   #content {
-    margin-left: 23vw !important;
+    margin-left: 17vw !important;
+  }
+}
+@media (max-width: 918px) and (min-width: 768px) {
+  #content {
+    margin-left: 20vw !important;
   }
 }

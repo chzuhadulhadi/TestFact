@@ -187,12 +187,21 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: 12px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .dashboard-content {
     margin-left: 20px;
     overflow-x: hidden;
-    width: 70vw;
-    margin-left: 25vw;
+    width: auto;
+    margin-left: 20vw;
+  }
+}
+
+@media (max-width: 899px) and (min-width: 767px) {
+  .dashboard-content {
+    margin-left: 20px;
+    overflow-x: hidden;
+    width: auto;
+    margin-left: 26vw;
   }
 }
 

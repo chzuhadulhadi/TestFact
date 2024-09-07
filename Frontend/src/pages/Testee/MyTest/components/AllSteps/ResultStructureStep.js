@@ -29,7 +29,7 @@ function ResultStructureStep(props) {
     <>
       <div hidden={props.obj.tabSelected === "RESULT STRUCTURE" ? false : true}>
         <div
-          className="result-structure-content w-[80%] mx-auto"
+          className="result-structure-content w-[65%] lg:w-[80%] mx-auto"
           style={{ textAlign: "initial" }}
         >
           <h3>#5 - Result Structure</h3>

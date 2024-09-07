@@ -180,7 +180,7 @@ function AutomaticText(props) {
               e.preventDefault();
               props.obj.apiCallToCreateTest(e);
             }}
-            className="formClass w-[80%] mx-auto mb-20"
+            className="formClass w-[65%] lg:w-[80%] mx-auto mb-20"
           >
             <h3>#6 - AUTOMATIC TEXT</h3>
             {Object?.keys(props.obj?.mainObj?.automaticText || {})?.map(
