@@ -1,5 +1,4 @@
 .paper {
-  padding: 20px 100px;
   border: 1px dotted black;
   margin: 10px 40px;
 }
@@ -17,7 +16,6 @@
 }
 
 /* Style the input fields */
-
 
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
@@ -48,7 +46,7 @@ input.invalid {
 
 /* Mark the steps that are finished and valid: */
 .step.finish {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
 }
 
 .properties input {
@@ -59,7 +57,7 @@ input.invalid {
 
 .properties select {
   margin: 1rem 0.2rem;
-  padding: 8px 15px
+  padding: 8px 15px;
 }
 
 .searchInput {
@@ -75,28 +73,27 @@ input.invalid {
 
 .myquestionairemain .leftHalf {
   width: 48%;
-
 }
 
 .myquestionairemain rightHalf {
   width: 48%;
 }
-td{
-font-size: 14px;
+td {
+  font-size: 14px;
 }
 
 .free-text-div textarea {
   width: 100%;
   height: 120px;
 }
-.sendTestMain{
+.sendTestMain {
   text-align: center;
   padding: 4rem 4rem;
 }
 th {
   font-size: 15px;
 }
-.buttontest{
+.buttontest {
   position: relative;
   right: 20px;
   width: max-content;

@@ -177,27 +177,25 @@ function TestLayout(props) {
   return (
     <>
       <div
-        className="layout-content "
+        className="layout-content"
         hidden={props.obj.tabSelected == "LAYOUT" ? false : true}
       >
-        <div className="leftHalf w-[70%] mx-auto mb-20">
+        <div className="leftHalf w-full lg:w-[70%] mx-auto mb-20">
           <form
             onSubmit={(e) => {
               e.preventDefault();
             }}
             className=""
           >
-            <h3 style={{ marginLeft: "20px" }}>LAYOUT</h3>
-            <div className="w-100" style={{ display: "flex" }}>
-              <div className="w-75">
+            <h2 className="ml-5 lg:ml-8">LAYOUT</h2>
+            <div className="w-full flex flex-col lg:flex-row">
+              <div className="lg:w-3/4 w-full mx-auto">
                 <div
-                  className="paper"
+                  className="paper relative h-max pb-10 px-10"
                   style={{
                     backgroundColor: textLayout.backgroundColor,
                     color: textLayout.textColor,
                     textAlign: "start",
-                    position: "relative",
-                    right: "20px",
                   }}
                 >
                   {textLayout.imageUrl ? (
@@ -205,13 +203,14 @@ function TestLayout(props) {
                       <svg
                         style={{ position: "absolute" }}
                         width="800"
-                        height="20"
+                        height="80"
+                        className="lg:block hidden"
                       >
                         <line
-                          x1="260"
-                          y1="10"
-                          x2="600"
-                          y2="10"
+                          x1="350"
+                          y1="70"
+                          x2="530"
+                          y2="70"
                           stroke="black"
                           marker-start="url(#arrow1)"
                           marker-end="url(#arrow1)"
@@ -219,17 +218,24 @@ function TestLayout(props) {
                       </svg>
 
                       <img
+                        className="mx-auto my-4"
                         style={{ height: "150px", width: "250px" }}
                         src={`${serverImageUrl}/api${textLayout.imageUrl}`}
                         alt="Selected Logo"
                       />
                     </>
                   ) : (
-                    <p style={{ height: "150px", width: "250px" }}>
+                    <p
+                      className="mx-auto my-4"
+                      style={{ height: "150px", width: "250px" }}
+                    >
                       No file chosen
                     </p>
                   )}
-                  <div style={{ position: "absolute", marginTop: "-60px" }}>
+                  <div
+                    style={{ position: "absolute", marginTop: "-60px" }}
+                    className="lg:block hidden"
+                  >
                     <svg
                       style={{ position: "absolute" }}
                       width="800"
@@ -238,7 +244,7 @@ function TestLayout(props) {
                       <line
                         x1="400"
                         y1="10"
-                        x2="600"
+                        x2="530"
                         y2="10"
                         stroke="black"
                         marker-start="url(#arrow1)"
@@ -246,26 +252,30 @@ function TestLayout(props) {
                       />
                     </svg>
                   </div>
-                  <div style={{ position: "absolute", marginTop: "20px" }}>
+                  <div
+                    style={{ position: "absolute", marginTop: "0px" }}
+                    className="lg:block hidden"
+                  >
                     <svg
                       style={{ position: "absolute" }}
                       width="800"
                       height="40"
                     >
                       <line
-                        x1="250"
-                        y1="30"
-                        x2="600"
-                        y2="30"
+                        x1="320"
+                        y1="10"
+                        x2="530"
+                        y2="10"
                         stroke="black"
                         marker-start="url(#arrow1)"
                         marker-end="url(#arrow1)"
                       />
                     </svg>
                   </div>
-                  <h3 className="p-5">#4 - My Questionaire</h3>
+                  <h3 className="text-center">#4 - My Questionaire</h3>
 
                   <h4
+                    className="mt-20"
                     style={{
                       backgroundColor: textLayout.questionBackgroundColor,
                       color: textLayout.questionTextColor,
@@ -274,7 +284,10 @@ function TestLayout(props) {
                   >
                     What is Computer
                   </h4>
-                  <div style={{ position: "absolute", marginTop: "-50px" }}>
+                  <div
+                    style={{ position: "absolute", marginTop: "-50px" }}
+                    className="lg:block hidden"
+                  >
                     <svg
                       style={{ position: "absolute" }}
                       width="600"
@@ -304,7 +317,7 @@ function TestLayout(props) {
                       <line
                         x1="200"
                         y1="28"
-                        x2="600"
+                        x2="530"
                         y2="28"
                         stroke="black"
                         marker-start="url(#arrow1)"
@@ -312,17 +325,20 @@ function TestLayout(props) {
                       />
                     </svg>
                   </div>
-                  <div style={{ position: "absolute" }}>
+                  <div
+                    style={{ position: "absolute" }}
+                    className="lg:block hidden"
+                  >
                     <svg
                       style={{ position: "absolute" }}
                       width="600"
-                      height="100"
+                      height="150"
                     >
                       <line
                         x1="140"
-                        y1="70"
-                        x2="600"
-                        y2="70"
+                        y1="110"
+                        x2="530"
+                        y2="110"
                         stroke="black"
                         marker-start="url(#arrow1)"
                         marker-end="url(#arrow1)"
@@ -333,15 +349,18 @@ function TestLayout(props) {
                     className="answer"
                     style={{ color: textLayout.answerColor }}
                   >
-                    <div style={{ display: "flex" }}>
-                      <p style={{ paddingRight: "10rem" }}>Answer 1</p>
+                    <div className="flex justify-between lg:flex-row mt-3">
+                      <p className="pr-0 lg:pr-[10rem]">Answer 1</p>
                       <p>Answer 2</p>
                     </div>
-                    <div style={{ position: "absolute", marginTop: "0px" }}>
+                    <div
+                      style={{ position: "absolute", marginTop: "0px" }}
+                      className="lg:block hidden"
+                    >
                       <svg
                         style={{ position: "absolute" }}
                         width="600"
-                        height="130"
+                        height="150"
                       >
                         <defs>
                           <marker
@@ -357,22 +376,23 @@ function TestLayout(props) {
                           </marker>
                         </defs>
                         <line
-                          x1="240"
-                          y1="110"
-                          x2="600"
-                          y2="110"
+                          x1="440"
+                          y1="130"
+                          x2="530"
+                          y2="130"
                           stroke="black"
                           marker-start="url(#arrow1)"
                           marker-end="url(#arrow1)"
                         />
                       </svg>
                     </div>
-                    <div style={{ display: "flex" }}>
-                      <p style={{ paddingRight: "10rem" }}>Answer 3</p>
+                    <div className="flex justify-between lg:flex-row">
+                      <p className="pr-0 lg:pr-[10rem]">Answer 3</p>
                       <p>Answer 4</p>
                     </div>
                   </div>
                   <h4
+                    className="mt-10"
                     style={{
                       backgroundColor: textLayout.questionBackgroundColor,
                       color: textLayout.questionTextColor,
@@ -385,21 +405,21 @@ function TestLayout(props) {
                     className="answer"
                     style={{ color: textLayout.answerColor }}
                   >
-                    <div style={{ display: "flex" }}>
-                      <p style={{ paddingRight: "10rem" }}>Answer 1</p>
+                    <div className="flex justify-between lg:flex-row">
+                      <p className="pr-0 lg:pr-[10rem]">Answer 1</p>
                       <p>Answer 2</p>
                     </div>
-                    <div style={{ display: "flex" }}>
-                      <p style={{ paddingRight: "10rem" }}>Answer 3</p>
+                    <div className="flex justify-between lg:flex-row">
+                      <p className="pr-0 lg:pr-[10rem]">Answer 3</p>
                       <p>Answer 4</p>
                     </div>
                   </div>
                 </div>
-                <div className="fixed  bottom-0 left-0 shadow-lg p-3 bg-white w-full">
-                  <div className="w-[90%]">
+                <div className="fixed bottom-0 left-0 shadow-lg p-3 bg-white w-full">
+                  <div className="w-[90%] mx-auto">
                     <button
                       type="submit"
-                      className="float-end  w-max   bg-blue-500 text-white py-2 rounded"
+                      className="float-end w-max bg-blue-500 text-white py-2 rounded"
                       onClick={(e) => {
                         props.obj.apiCallToCreateTest(e);
                       }}
@@ -410,7 +430,7 @@ function TestLayout(props) {
                 </div>
               </div>
 
-              <div className="w-25">
+              <div className="lg:w-1/4 w-full px-5 mt-3 lg:mt-0">
                 <label className="form-label">Please select your logo</label>
                 <input
                   onChange={(e) => {
@@ -421,22 +441,7 @@ function TestLayout(props) {
                   placeholder="choose a file"
                 />
 
-                {/* <label className="form-label">Choose Background Color</label>
-          <ChromePicker
-            color={textLayout.backgroundColor}
-            onChangeComplete={(color) => {
-              layoutFieldsAdder({ target: { id: "backgroundColor", value: color.hex } });
-            }
-            }
-          /> */}
-                <div
-                  ref={BackgroundColor}
-                  className="color-picker"
-                  style={{ position: "relative", left: "100px" }}
-                >
-                  <br />
-                  <br />
-
+                <div ref={BackgroundColor} className="color-picker mt-3">
                   <button
                     onClick={() =>
                       setShowColorPickerForBackgroundColor(
@@ -457,16 +462,9 @@ function TestLayout(props) {
                     />
                   )}
                 </div>
-                <br />
-                <div
-                  ref={TextColor}
-                  className="color-picker"
-                  style={{ position: "relative", left: "100px" }}
-                >
-                  <br />
-                  <br />
-                  <br />
 
+                <div ref={TextColor} className="color-picker">
+                  <br />
                   <button
                     onClick={() =>
                       setShowColorPickerForTextColor(
@@ -488,11 +486,8 @@ function TestLayout(props) {
                   )}
                 </div>
 
-                <div
-                  ref={QuestionBackgroundColor}
-                  className="color-picker"
-                  style={{ position: "relative", left: "100px" }}
-                >
+                <div ref={QuestionBackgroundColor} className="color-picker">
+                  <br />
                   <br />
                   <br />
                   <button
@@ -518,13 +513,9 @@ function TestLayout(props) {
                     />
                   )}
                 </div>
-                <br />
 
-                <div
-                  ref={QuestionTextColor}
-                  className="color-picker"
-                  style={{ position: "relative", left: "100px" }}
-                >
+                <br />
+                <div ref={QuestionTextColor} className="color-picker">
                   <br />
                   <br />
                   <button
@@ -547,12 +538,9 @@ function TestLayout(props) {
                     />
                   )}
                 </div>
-                <div
-                  ref={AnswerColor}
-                  className="color-picker"
-                  style={{ position: "relative", left: "100px" }}
-                >
-                  <br />
+
+                <br />
+                <div ref={AnswerColor} className="color-picker">
                   <br />
                   <button
                     onClick={() =>
@@ -561,7 +549,7 @@ function TestLayout(props) {
                       )
                     }
                   >
-                    Answer Color
+                    Answer COLOR
                   </button>
                   {showColorPickerForAnswerColor && (
                     <ChromePicker
