@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; // For extracting URL parameters
 import FillQuestion from "../../../../questionaire/components/fillquestion";
 import { apiCall } from "../../../../../apiCalls/apiCalls";
@@ -7,7 +7,7 @@ import SideBar from "../../../../mainComponent/SideBar";
 
 // Example API function to fetch data based on ID
 
-const Preview = () => {
+const Preview = (props) => {
   const { id } = useParams(); // Extracts the 'id' from the URL
   const [data, setData] = useState(null);
 
@@ -61,7 +61,8 @@ const Preview = () => {
 
   return (
     <>
-      <div hidden={props.obj.tabSelected === "PREVIEW" ? false : true}></div>
+      <div hidden={props.obj?.tabSelected === "PREVIEW" ? false : true}></div>
+
       <SideBar />
       <div id="content" className=" w-auto sm:w-auto">
         {data?.testObj && (
