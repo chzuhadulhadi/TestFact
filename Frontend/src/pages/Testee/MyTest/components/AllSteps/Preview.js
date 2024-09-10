@@ -61,20 +61,27 @@ const Preview = () => {
 
   return (
     <>
+      <div hidden={props.obj.tabSelected === "PREVIEW" ? false : true}></div>
       <SideBar />
-      {/* <div id="content" className=" w-auto sm:w-auto">
-            {data?.testObj && (
-                <div className="w-[80%] mx-auto">
-                    <div className="flex justify-center mt-8">
-                        <img src='/4.webp' alt="some image" width='300px' height='300px' className="pic" />
-                    </div>
-                    <FillQuestion 
-                        questionData={data.testObj} 
-                        language={data.language || 'english'} 
-                    />
-                </div>
-            )}
-            </div> */}
+      <div id="content" className=" w-auto sm:w-auto">
+        {data?.testObj && (
+          <div className="w-[80%] mx-auto">
+            <div className="flex justify-center mt-8">
+              <img
+                src="/4.webp"
+                alt="some image"
+                width="300px"
+                height="300px"
+                className="pic"
+              />
+            </div>
+            <FillQuestion
+              questionData={data.testObj}
+              language={data.language || "english"}
+            />
+          </div>
+        )}
+      </div>
     </>
   );
 };
