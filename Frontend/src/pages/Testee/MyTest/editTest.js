@@ -150,7 +150,7 @@ function EditTest(props) {
             name: data.name,
             categoryStore: data.categoryStore,
             layout: data.layout,
-            testObj:data.getobj,
+            testObj: data.getobj,
           });
           setCategoryStore(response?.data?.data?.categoryStore);
           // console.log(response?.data?.data);
@@ -382,17 +382,6 @@ function EditTest(props) {
             apiCallToCreateTest,
           }}
         />
-          <Preview 
-          obj={{
-            setTabSelected,
-            mainObjectAdderForProperties,
-            showTab,
-            tabSelected,
-            mainObj,
-            handleSaveTest,
-            apiCallToCreateTest,
-          }}
-          />
       </div>
     </>
   );

@@ -207,6 +207,7 @@ function TestLayout(props) {
                         className="lg:block hidden"
                       >
                         <line
+                          className=""
                           x1="350"
                           y1="70"
                           x2="530"
