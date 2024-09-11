@@ -422,6 +422,8 @@ function TestLayout(props) {
                       type="submit"
                       className="float-end w-max bg-blue-500 text-white py-2 rounded"
                       onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
                         props.obj.apiCallToCreateTest(e);
                       }}
                     >

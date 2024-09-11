@@ -262,6 +262,8 @@ function CategoriesStep(props) {
                       type="submit"
                       className="float-end  w-max   text-white py-2 rounded"
                       onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
                         props.obj.apiCallToCreateTest(e);
                       }}
                     >

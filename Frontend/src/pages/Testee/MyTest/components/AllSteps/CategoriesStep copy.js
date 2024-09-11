@@ -3,8 +3,8 @@ import React, { Component, useEffect, useState } from "react";
 // import '../../style.css'
 import "./steps.css";
 import Modal from "react-bootstrap/Modal";
-import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
-import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounde';
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounde";
 
 var categoryCounter = 0;
 function CategoriesStep(props) {
@@ -350,17 +350,17 @@ function CategoriesStep(props) {
         </div>
       </div>
       <button
-                onClick={() => props.obj.setTabSelected("PROPERTIES")}
-                className="fixed LEFT-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
-              >
-                <ArrowBackIosRoundedIcon/>
-              </button>
-                <button
-                onClick={() => props.obj.setTabSelected("QUESTIONS")}
-                className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
-              >
-                <ArrowForwardIosRoundedIcon/>
-              </button>
+        onClick={() => props.obj.setTabSelected("PROPERTIES")}
+        className="fixed LEFT-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
+      >
+        <ArrowBackIosRoundedIcon />
+      </button>
+      <button
+        onClick={() => props.obj.setTabSelected("QUESTIONS")}
+        className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg flex "
+      >
+        <ArrowForwardIosRoundedIcon />
+      </button>
     </>
   );
 }

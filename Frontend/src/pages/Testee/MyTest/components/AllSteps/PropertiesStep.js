@@ -265,19 +265,17 @@ function PropertiesStep(props) {
             // editorClassName="editor-class"
             toolbarClassName="toolbar-class"
           />
-          <div className="fixed  bottom-0 left-0 shadow-lg p-3 bg-white w-full">
-            <div className="w-[90%]">
-              <button
-                type="submit"
-                className="float-end  w-max   bg-blue-500 text-white py-2 rounded"
-                onClick={(e) => {
-                  props.obj.apiCallToCreateTest(e);
-                }}
-              >
-                Save Test & Close
-              </button>
-            </div>
-          </div>
+          <button
+            type="submit"
+            className="float-end w-max bg-blue-500 text-white py-2 rounded"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation(); // Prevent event bubbling
+              props.obj.apiCallToCreateTest(e);
+            }}
+          >
+            Save Test & Close
+          </button>
           {/* <button
             className="next-button"
             type="submit"
