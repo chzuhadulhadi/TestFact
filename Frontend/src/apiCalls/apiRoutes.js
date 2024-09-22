@@ -5,8 +5,8 @@ export const local = "https://testfactory.online/";
 export const serverUrl = "https://testfactory.online/";
 export const serverImageUrl = "https://testfactory.online";
 
-// export const frontEndPath = "https://test-fact.vercel.app/"
-export const frontEndPath = "http://localhost:3000/";
+export const frontEndPath = "https://test-fact.vercel.app/"
+// export const frontEndPath = "http://localhost:3000/";
 // export const local = "http://localhost:4000/";
 // export const serverUrl = "http://localhost:4000/";
 // export const serverImageUrl = "http://localhost:4000";
