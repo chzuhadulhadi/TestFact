@@ -202,7 +202,7 @@ function TestLayout(props) {
                     <>
                       <svg
                         style={{ position: "absolute" }}
-                        width="800"
+                        width="530"
                         height="80"
                         className="lg:block hidden"
                       >
@@ -239,7 +239,7 @@ function TestLayout(props) {
                   >
                     <svg
                       style={{ position: "absolute" }}
-                      width="800"
+                      width="530"
                       height="20"
                     >
                       <line
@@ -259,7 +259,7 @@ function TestLayout(props) {
                   >
                     <svg
                       style={{ position: "absolute" }}
-                      width="800"
+                      width="530"
                       height="40"
                     >
                       <line
@@ -291,7 +291,7 @@ function TestLayout(props) {
                   >
                     <svg
                       style={{ position: "absolute" }}
-                      width="600"
+                      width="530"
                       height="35"
                     >
                       <defs>
@@ -332,7 +332,7 @@ function TestLayout(props) {
                   >
                     <svg
                       style={{ position: "absolute" }}
-                      width="600"
+                      width="530"
                       height="150"
                     >
                       <line
@@ -360,7 +360,7 @@ function TestLayout(props) {
                     >
                       <svg
                         style={{ position: "absolute" }}
-                        width="600"
+                        width="530"
                         height="150"
                       >
                         <defs>
@@ -582,7 +582,7 @@ function TestLayout(props) {
           <ArrowForwardIosRoundedIcon />
         </button>
       </div>
-    </>
+    </> 
   );
 }
 
