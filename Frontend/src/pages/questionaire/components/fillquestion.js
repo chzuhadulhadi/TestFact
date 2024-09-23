@@ -10,10 +10,10 @@ var questionCount = 1;
 
 function FillQuestion(questionData) {
     const divStyle = {
-        textColor: { color: questionData.questionData.layout.textColor, background: questionData.questionData.layout.backgroundColor, textAlign: questionData?.language == 'english' ? 'left' : 'right' },
+        textColor: { color: questionData.questionData.layout.textColor, background: questionData.questionData.layout.backgroundColor, textAlign: questionData?.language == 'english' ? 'left' : 'right',padding:'20px' },
         answerColor: { color: questionData.questionData.layout.answerColor, textAlign: questionData?.language == 'english' ? 'left' : 'right' },
         logoBackgroundColor: { backgroundColor: questionData.questionData.layout.backgroundColor },
-        question: { color: questionData.questionData.layout.questionTextColor, background: questionData.questionData.layout.questionBackgroundColor },
+        question: { color: questionData.questionData.layout.questionTextColor, background: questionData.questionData.layout.questionBackgroundColor, width: '100%' },
     };
 
     const showToastMessage = (text, color, notify) => {
@@ -43,8 +43,7 @@ function FillQuestion(questionData) {
             try {
                 name[key][questionKey]["selectAnswer"] = answer;
             }
-            catch
-            {
+            catch {
                 name[key][questionKey] = answer;
             }
             apiCall('post', saveUserTest, { id: testObj.id, testObj: name })
@@ -134,10 +133,18 @@ function FillQuestion(questionData) {
 
         }
     }
-
+    
     return (
-        <div style={divStyle.textColor} className='fill-question' >
+        <div style={divStyle.textColor} className='fill-question'  >
             {/* <h1>{testObj.name}</h1> */}
+            {
+                questionData.questionData.layout.imageUrl &&
+                <img 
+                    className="test-logo" 
+                    src={serverImageUrl + questionData.questionData.layout.imageUrl}
+                    style={{ padding: '20px'}}
+                />
+            }
             {Object.keys(categoryData).map(function (key) {
                 {
                     const regexPattern = /answer[0-9]/;
@@ -153,12 +160,12 @@ function FillQuestion(questionData) {
                                         <>
                                             {/* One By one case */}
                                             {testObj.orientation == 1 && <div key={count} hidden={(showDiv == count) ? false : true}>
-                                                <h2>{key}</h2>
+                                                {key !== "No Category" && <h2>{key}</h2>}
                                                 {categoryData[key][questionKey]["image"] && categoryData[key][questionKey]["image"] != '' &&
                                                     <img
                                                         height={'200px'}
                                                         width={'200px'}
-                                                        src={serverImageUrl+categoryData[key][questionKey]["image"]}
+                                                        src={serverImageUrl + categoryData[key][questionKey]["image"]}
                                                     />
                                                 }
                                                 <div style={divStyle.question} className='question'>
@@ -186,7 +193,7 @@ function FillQuestion(questionData) {
                                                                         {categoryData[key][questionKey][answers]["image"] && categoryData[key][questionKey][answers]["image"] != '' && <img
                                                                             height={'200px'}
                                                                             width={'200px'}
-                                                                            src={serverImageUrl+categoryData[key][questionKey][answers]["image"]}
+                                                                            src={serverImageUrl + categoryData[key][questionKey][answers]["image"]}
                                                                         />
                                                                         }
                                                                         {categoryData[key][questionKey][answers]["answer"]}
@@ -216,7 +223,7 @@ function FillQuestion(questionData) {
                                                             <img
                                                                 height={'200px'}
                                                                 width={'200px'}
-                                                                src={serverImageUrl+categoryData[key][questionKey]["image"]}
+                                                                src={serverImageUrl + categoryData[key][questionKey]["image"]}
                                                             />
                                                         }
                                                         {questionData?.language == 'english' ? `Question ${count}:` : ''}
@@ -240,7 +247,7 @@ function FillQuestion(questionData) {
                                                                             {categoryData[key][questionKey][answers]["image"] && categoryData[key][questionKey][answers]["image"] != '' && <img
                                                                                 height={'200px'}
                                                                                 width={'200px'}
-                                                                                src={serverImageUrl+categoryData[key][questionKey][answers]["image"]}
+                                                                                src={serverImageUrl + categoryData[key][questionKey][answers]["image"]}
                                                                             />
                                                                             }
                                                                             <input id={answers} type="radio" checked={temp[key][questionKey]["selectAnswer"] === answers} value={questionKey} name={questionKey} onChange={(e) => handleChange(key, questionKey, answers, e)} />
@@ -273,7 +280,7 @@ function FillQuestion(questionData) {
                                             <img
                                                 height={'200px'}
                                                 width={'200px'}
-                                                src={serverImageUrl+categoryData[key]["image"]}
+                                                src={serverImageUrl + categoryData[key]["image"]}
                                             />
 
                                         }
@@ -297,7 +304,7 @@ function FillQuestion(questionData) {
                                                         {categoryData[key][answers]["image"] && categoryData[key][answers]["image"] != '' && <img
                                                             height={'200px'}
                                                             width={'200px'}
-                                                            src={serverImageUrl+categoryData[key][answers]["image"]}
+                                                            src={serverImageUrl + categoryData[key][answers]["image"]}
                                                         />
                                                         }
                                                         {categoryData[key][answers]["answer"]}
@@ -326,7 +333,7 @@ function FillQuestion(questionData) {
                                         <img
                                             height={'200px'}
                                             width={'200px'}
-                                            src={serverImageUrl+categoryData[key]["image"]}
+                                            src={serverImageUrl + categoryData[key]["image"]}
                                         />
                                     }
                                 </h4>

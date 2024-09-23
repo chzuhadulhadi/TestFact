@@ -88,7 +88,11 @@ function SideBar(props) {
             id="2"
             onClick={() => {
               toggleSidebar();
-              navigate("/dashboard/mytest");
+              if (window.location.pathname === "/dashboard/mytest") {
+                window.location.reload();
+            } else {
+                navigate("/dashboard/mytest");
+            }
             }}
           >
             <a className="no-underline" id="1">

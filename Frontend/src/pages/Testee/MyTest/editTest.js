@@ -152,7 +152,16 @@ function EditTest(props) {
             layout: data.layout,
             testObj: data.getobj,
           });
-          setCategoryStore(response?.data?.data?.categoryStore);
+          const filteredCategoryStore = Object.keys(response?.data?.data?.categoryStore).reduce((acc, key) => {
+            if (key !== "categoryName" && key !== "noOfQuestion") {
+              acc[key] = response?.data?.data?.categoryStore[key];
+            }
+            return acc;
+          }, {});
+          console.log(Object.keys(filteredCategoryStore));
+          if (Object.keys(filteredCategoryStore).length > 0) {
+            setCategoryStore(filteredCategoryStore);
+          }
           // console.log(response?.data?.data);
           // return response?.data?.data?.rows[0];
           // setData(response?.data?.data?.rows);

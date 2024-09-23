@@ -2,8 +2,8 @@ export const environment = "C://Users/user/Downloads/";
 // export const paymentRoute="https://icredit.rivhit.co.il/API/PaymentPageRequest.svc/GetUrl";
 
 export const local = "https://testfactory.online/";
-export const serverUrl = "https://testfactory.online/";
-export const serverImageUrl = "https://testfactory.online";
+export const serverUrl = "https://testfactory.online/api/";
+export const serverImageUrl = "https://testfactory.online/api";
 
 export const frontEndPath = "https://test-fact.vercel.app/"
 // export const frontEndPath = "http://localhost:3000/";
