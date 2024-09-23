@@ -8,12 +8,30 @@ import { toast } from "react-toastify";
 import { serverImageUrl } from "../../../../../apiCalls/apiRoutes";
 import { useHistory } from "react-router-dom";
 import XLSX from "sheetjs-style";
-import { Grid, Box } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControlLabel,
+  TextField,
+  Checkbox,
+  Button
+} from "@mui/material";
 // import '../../style.css'
 import "./steps.css";
 import Modal from "react-bootstrap/Modal";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
+import SaveIcon from "@mui/icons-material/Save";
+import CancelIcon from "@mui/icons-material/Cancel";
+
 
 var questionCounter = 0;
 var answerCounter = 0;
@@ -41,6 +59,8 @@ function QuestionStep(props) {
   const [questionCount, setQuestionCount] = useState(0);
   const [questionbank, setQuestionBank] = useState([]);
   const [showExampleModal, setShowExampleModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingQuestion, setEditingQuestion] = useState(null);
   useEffect(() => {
     apiCall("post", getAllPreviousQuestions)
       .then((res) => {
@@ -65,6 +85,22 @@ function QuestionStep(props) {
     setSelectedFile(event.target.files[0]);
     setHandleRend(handleRend + 1);
     answerphoto(event);
+  };
+  const handleEditQuestion = (questionKey) => {
+    setEditingQuestion(questionKey);
+    setShowEditModal(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setShowEditModal(false);
+    setEditingQuestion(null);
+  };
+
+  const handleSaveEdit = (e) => {
+    e.preventDefault();
+    // Save the edited question data
+    // You'll need to implement the logic to update the question in your state and API
+    handleCloseEditModal();
   };
   const answerphoto = (e) => {
     const lastIndex = e.target.id.lastIndexOf("-");
@@ -134,6 +170,8 @@ function QuestionStep(props) {
         showToastMessage(err?.response?.data?.message, "red", 2);
       });
   };
+
+  console.log(props.obj.mainObj);
 
   const checkquestions = () => {
     const questionsData = props?.obj?.mainObj?.questions || {};
@@ -281,7 +319,7 @@ function QuestionStep(props) {
           questionsData[key].hasOwnProperty("answer")
         ) {
           answerCounter++;
-          newState[key] = (
+          newState[key.split('-')[1]] = (
             <>
               <div className="question-div QuesAns">
                 <label className="form-label" hidden>
@@ -289,16 +327,14 @@ function QuestionStep(props) {
                 </label>
                 <input
                   type="file"
-                  id={`question${
-                    key.split("question")[1]
-                  }-answer${answerCounter}-image`}
+                  id={`question${key.split("question")[1]
+                    }-answer${answerCounter}-image`}
                   onChange={handleAnswerFileSelect}
                 />
                 {questionsData[key].image ? (
                   <img
-                    id={`img_question${
-                      key.split("question")[1]
-                    }-answer${answerCounter}`}
+                    id={`img_question${key.split("question")[1]
+                      }-answer${answerCounter}`}
                     height={"200px"}
                     width={"200px"}
                     src={
@@ -309,9 +345,8 @@ function QuestionStep(props) {
                   />
                 ) : (
                   <img
-                    id={`img_question${
-                      key.split("question")[1]
-                    }-answer${answerCounter}`}
+                    id={`img_question${key.split("question")[1]
+                      }-answer${answerCounter}`}
                     height={"200px"}
                     width={"200px"}
                     style={{
@@ -359,7 +394,7 @@ function QuestionStep(props) {
                       id={key}
                       defaultValue={questionsData[key].point}
                       onChange={(e) => answerAdder(e, "point")}
-                      // style={{ backgroundColor: (questionsData[key].point === null || questionsData[key].point === 0) ? 'red' : 'green' }}
+                    // style={{ backgroundColor: (questionsData[key].point === null || questionsData[key].point === 0) ? 'red' : 'green' }}
                     >
                       <option value={0} style={{ color: "red" }}>
                         False
@@ -670,7 +705,7 @@ function QuestionStep(props) {
                 width={"200px"}
                 style={{ position: "fixed", right: "-200px", top: "-200px" }}
 
-                //  src={serverImageUrl + props.obj.mainObj["questions"][`question${questionCounter}`]?.question}
+              //  src={serverImageUrl + props.obj.mainObj["questions"][`question${questionCounter}`]?.question}
               />
             </Grid>
             <Grid xs={2} item sx={{ display: "flex", flexDirection: "column" }}>
@@ -738,12 +773,16 @@ function QuestionStep(props) {
           </Grid>
         </>
       );
-      setQuestionCount((prevCount) => prevCount + 1);
 
-      ++questionCounter;
+      setQuestionCount((prevCount) => prevCount + 1);
       return name;
     });
+    setEditingQuestion("question" + questionCounter);
+    setShowEditModal(true);
+    ++questionCounter;
+
   }
+  console.log(questionCounter);
 
   function addHtmlAnswer(e) {
     var qstnCounter = e.target.getAttribute("name");
@@ -780,6 +819,7 @@ function QuestionStep(props) {
               placeholder="Answer"
               className="form-control mb-3 pt-3 pb-3 answers-field"
               required
+              value={props.obj.mainObj["questions"][`question${questionCounter}`]?.question}
             />
             <>
               {props.obj.getMainObj().scoringType == 1 ? (
@@ -808,7 +848,7 @@ function QuestionStep(props) {
                     className="form-control mb-3 pt-3 pb-3 answers-field-points"
                     id={"question" + qstnCounter + "-answer" + answerCounter}
                     onChange={(e) => answerAdder(e, "point")}
-                    // style={{ backgroundColor: props.mainObj?.questions[`question${qstnCounter}`]?.point == 0 ? 'red' : 'green' }}
+                  // style={{ backgroundColor: props.mainObj?.questions[`question${qstnCounter}`]?.point == 0 ? 'red' : 'green' }}
                   >
                     <option value={-1} style={{ backgroundColor: "white" }}>
                       Select Option
@@ -869,10 +909,11 @@ function QuestionStep(props) {
   }
 
   function deleteQuestion(topkey) {
+    console.log(topkey);
     const questionKey = topkey;
+    console.log(questionCounter);
     if (questionCounter > 0) {
       setQuestionCount((prevCount) => prevCount - 1);
-
       setHtml((prevState) => {
         const newState = { ...prevState };
         delete newState[questionKey];
@@ -1145,16 +1186,14 @@ function QuestionStep(props) {
                 </label>
                 <input
                   type="file"
-                  id={`question${
-                    questionCounter - 1
-                  }-answer${answerCounter}-image`}
+                  id={`question${questionCounter - 1
+                    }-answer${answerCounter}-image`}
                   onChange={handleAnswerFileSelect}
                 />
                 {question_data[key].image ? (
                   <img
-                    id={`img_question${
-                      questionCounter - 1
-                    }-answer${answerCounter}`}
+                    id={`img_question${questionCounter - 1
+                      }-answer${answerCounter}`}
                     height={"200px"}
                     width={"200px"}
                     src={
@@ -1165,9 +1204,8 @@ function QuestionStep(props) {
                   />
                 ) : (
                   <img
-                    id={`img_question${
-                      questionCounter - 1
-                    }-answer${answerCounter}`}
+                    id={`img_question${questionCounter - 1
+                      }-answer${answerCounter}`}
                     height={"200px"}
                     width={"200px"}
                     style={{
@@ -1215,7 +1253,7 @@ function QuestionStep(props) {
                       id={key}
                       defaultValue={question_data[key].points}
                       onChange={(e) => answerAdder(e, "point")}
-                      // style={{ backgroundColor: (questionsData[key].point === null || questionsData[key].point === 0) ? 'red' : 'green' }}
+                    // style={{ backgroundColor: (questionsData[key].point === null || questionsData[key].point === 0) ? 'red' : 'green' }}
                     >
                       <option value={0} style={{ color: "red" }}>
                         False
@@ -1323,9 +1361,18 @@ function QuestionStep(props) {
             </button>
             <br />
             <br />
+
+
+            <button
+              style={{ position: "relative", right: "20px" }}
+              onClick={addQuestion}
+            >
+              Add a Question
+            </button>
+            <br />
             <br />
           </div>
-          <div className="mt-36 text-xs px-6">
+          {/* <div className="mt-36 text-xs px-6">
             {" "}
             <button
               className="QuestionButtonClass"
@@ -1333,8 +1380,8 @@ function QuestionStep(props) {
             >
               {allQUestionView}
             </button>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             {" "}
             <input
               type="search"
@@ -1347,67 +1394,229 @@ function QuestionStep(props) {
               className="search-for-question"
               onChange={search}
             />
-          </div>
+          </div> */}
 
           <Grid container spacing={3}>
             {Object.keys(html).map(function (topkey, i) {
               return (
                 <>
                   <Grid item xs={12} id={"all-questions-" + i}>
-                    <Grid container key={i} className="all-questions">
+                    <Grid container key={i} className="all-questions" style={{ border: '1px solid #ccc', borderRadius: '8px', padding: '16px', marginBottom: '20px', position: 'relative' }}>
+                      <Grid item xs={12} style={{ marginBottom: '16px' }}>
+                        <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+                          Question: {i + 1}
+                        </Typography>
+                      </Grid>
                       <Grid item xs={12}>
-                        <button
-                          id="collapse-button"
-                          onClick={() => handleCollapse("all-questions-" + i)}
-                        >
-                          -
-                        </button>
+                        <Typography variant="h5" style={{ marginBottom: '16px' }}>
+                          {props.obj.mainObj.questions[topkey]?.question}
+                        </Typography>
                       </Grid>
-                      <Grid xs={12} className="QuesAns squestion-div">
-                        {html[topkey]}
+                      <Grid item xs={12}>
+                        {Object.keys(props.obj.mainObj.questions).filter(key => key.startsWith(`${topkey}-answer`)).map((answerKey, index) => (
+                          <Box key={index} style={{ marginBottom: '8px' }}>
+                            <Typography>
+                              {props.obj.mainObj.questions[answerKey].answer}
+                              <span style={{ marginLeft: '8px' }}>Points: {props.obj.mainObj.questions[answerKey].point}</span>
+                            </Typography>
+                          </Box>
+                        ))}
                       </Grid>
-                      <Grid
-                        xs={12}
-                        className="QuesAns question-div squestion-div"
-                      >
-                        {Object.keys(htmlAnswer).map(function (key, i) {
-                          {
-                            var temp =
-                              htmlAnswer[
-                                key
-                              ]?.props.children?.props.children[1].props.id.split(
-                                "-"
-                              )[0];
-                            if (topkey == temp) {
-                              return htmlAnswer[key];
-                            } else {
-                              return null;
-                            }
-                          }
-                        })}
-                      </Grid>
+                      <Box style={{ position: 'absolute', top: '8px', right: '8px' }}>
+                        <EditIcon
+                          onClick={() => handleEditQuestion(topkey)}
+                          style={{ cursor: 'pointer', color: 'blue', marginRight: '8px' }}
+                        />
+                        <DeleteIcon
+                          onClick={() => deleteQuestion(topkey)}
+                          style={{ cursor: 'pointer', color: 'red' }}
+                        />
+                      </Box>
                     </Grid>
                   </Grid>
-                  <Grid item xs={12} id={"delall-questions-" + i}>
+                  {/* <Grid item xs={12} id={"delall-questions-" + i}>
                     <button
                       className="question-div QuesAns"
                       onClick={() => deleteQuestion(topkey)}
                     >
                       Delete a Question
                     </button>
-                  </Grid>
+                  </Grid> */}
                 </>
               );
             })}
           </Grid>
+          <Modal show={showEditModal} onHide={handleCloseEditModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Question</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {editingQuestion && (
+                <form onSubmit={handleSaveEdit}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h6">Question</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <input
+                        type="file"
+                        id={`${editingQuestion}-image`}
+                        onChange={(e) => handleFileSelect(e)}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <img
+                        id={`img_${editingQuestion}`}
+                        height="200"
+                        width="200"
+                        style={{ display: 'none' }}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <FormControl fullWidth>
+                        <InputLabel>Category</InputLabel>
+                        <Select
+                          onChange={(e) => categoryValueAdder(e, "categoryName")}
+                          id={editingQuestion}
+                          name={editingQuestion}
+                        >
+                          <MenuItem value="">Select Category</MenuItem>
+                          {Object.keys(props.obj.categoryStore).map((key, index) => (
+                            <MenuItem key={index} value={props.obj.categoryStore[key]["categoryName"]}>
+                              {props.obj.categoryStore[key]["categoryName"]}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            id={"freeText" + 0}
+                            name={editingQuestion}
+                            onChange={handleFreeTextChange}
+                          />
+                        }
+                        label="Free Text"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        fullWidth
+                        id={editingQuestion}
+                        label="Question"
+                        name="categoryField"
+                        value={props.obj.mainObj["questions"][editingQuestion]?.question}
+                        onChange={(e) => categoryValueAdder(e, "question")}
+                        placeholder="Question"
+                        required
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        id={"answer" + questionCounter}
+                        name={editingQuestion}
+                        onClick={(e) => addHtmlAnswer(e)}
+                      >
+                        Add Answer
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                      {Object.keys(htmlAnswer).map(function (key, i) {
+                        var temp = htmlAnswer[key]?.props.children?.props.children[1].props.id.split("-")[0];
+                        if (editingQuestion == temp) {
+                          return (
+                            <Grid container spacing={2} key={i}>
+                              <Grid item xs={12}>
+                                <input
+                                  type="file"
+                                  id={`${editingQuestion}-${key}-image`}
+                                  onChange={handleAnswerFileSelect}
+                                />
+                              </Grid>
+                              <Grid item xs={12}>
+                                <img
+                                  id={`img_${editingQuestion}-${key}`}
+                                  height="200"
+                                  width="200"
+                                  style={{ display: 'none' }}
+                                />
+                              </Grid>
+                              <Grid item xs={12}>
+                                <TextField
+                                  fullWidth
+                                  id={`${editingQuestion}-${key}`}
+                                  label="Answer"
+                                  name="categoryField"
+                                  onChange={(e) => answerAdder(e, "answer")}
+                                  placeholder="Answer"
+                                  required
+                                  value={props.obj.mainObj["questions"][`${editingQuestion}-${key}`]?.answer}
+                                />
+                              </Grid>
+                              <Grid item xs={12}>
+                                {props.obj.getMainObj().scoringType == 1 ? (
+                                  <TextField
+                                    fullWidth
+                                    id={`${editingQuestion}-${key}`}
+                                    label="Points"
+                                    type="number"
+                                    onChange={(e) => answerAdder(e, "point")}
+                                    placeholder="points"
+                                    InputProps={{ inputProps: { min: 0, max: 10 } }}
+                                    required
+                                    value={props.obj.mainObj["questions"][`${editingQuestion}-${key}`]?.point}
+                                  />
+                                ) : (
+
+                                  <FormControl fullWidth>
+                                    <Typography variant="p" >Points</Typography>
+                                    <select
+                                      // defaultValue={"Select Option"}
+                                      className="m-1 p-2"
+                                      id={`${editingQuestion}-${key}`}
+                                      defaultValue={props.obj.mainObj["questions"][`${editingQuestion}-${key}`]?.point}
+                                      onChange={(e) => answerAdder(e, "point")}
+                                    // style={{ backgroundColor: props.mainObj?.questions[`question${qstnCounter}`]?.point == 0 ? 'red' : 'green' }}
+                                    >
+                                      <option value={-1} style={{ backgroundColor: "white" }}>
+                                        Select Option
+                                      </option>
+                                      <option
+                                        value={0}
+                                        style={{ color: "red", backgroundColor: "white" }}
+                                      >
+                                        False
+                                      </option>
+                                      <option
+                                        value={10}
+                                        style={{ color: "green", backgroundColor: "white" }}
+                                      >
+                                        True
+                                      </option>
+                                    </select>
+                                  </FormControl>
+                                )}
+                              </Grid>
+                            </Grid>
+                          );
+                        } else {
+                          return null;
+                        }
+                      })}
+                    </Grid>
+                  </Grid>
+                </form>
+              )}
+            </Modal.Body>
+          </Modal>
+
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <button
-                style={{ position: "relative", right: "20px" }}
-                onClick={addQuestion}
-              >
-                Add a Question
-              </button>
+
               <div className="fixed  bottom-0 left-0 shadow-lg p-3 bg-white w-full">
                 <div className="w-[90%]">
                   <button
