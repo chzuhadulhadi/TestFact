@@ -179,8 +179,7 @@ function EditTest(props) {
   };
 
   function apiCallToCreateTest(draft) {
-    console.log(mainObj);
-    apiCall("post", createMyTest, { ...mainObj })
+    apiCall("post", createMyTest, { ...mainObj, testObj: undefined })
       .then((res) => {
         showToastMessage("Test created Successfully ", "green", 1);
         navigate("/dashboard/mytest");
